@@ -74,6 +74,6 @@
                 <img class="medium-img" src="duck.svg">
                 <p class="notebook-p coming-soon-regular">big img</p>
                 <img class="big-img" src="duck.svg">
-
+                <p class="notebook-p coming-soon-regular">Test formatare randuri dupa imagini</p>
                 <p class="notebook-p row"><br></p>
             </div>
