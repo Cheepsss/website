@@ -1,0 +1,79 @@
+Notebook demo
+
+<p class="notebook-p row"><br></p>
+            <div class="row">
+                <h1>
+                    <div>
+                        Subtitlu normal
+                    </div>
+                </h1>
+
+                <p class="notebook-p coming-soon-regular">
+                    Paragraf scurt
+                </p>
+                <p class="notebook-p row"><br></p>
+                <p class="notebook-p coming-soon-regular">
+                    Paragraf lung Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend nisl quis ante tincidunt dignissim. Praesent vel euismod enim. Aenean luctus purus metus, at dictum lectus consectetur sed. Curabitur consectetur risus id augue volutpat, sit amet maximus massa lacinia. Curabitur rutrum a mi id auctor. Etiam hendrerit imperdiet gravida. Cras vel est nec erat suscipit facilisis et vitae erat.
+                </p>
+                <p class="notebook-p coming-soon-regular">
+                    Paragraf  Lorem ipsum dolor
+                    <span class="highlight-green">highlight</span>
+                    consectetur adipiscing elit. Proin 
+                    <span class="font-blue">blue font</span> 
+                    <span class="underline">underline</span> quis 
+                    ante tincidunt
+                    <span class="bold">bold text.</span>
+                </p>
+                <p class="notebook-p row"><br></p>
+            </div>
+            
+            <div class="row">
+                <h1>
+                    <span class="px-1 dotted">
+                        dotted element
+                    </span>
+                </h1>
+
+                <p class="notebook-p coming-soon-regular">
+                    paragraf 1, spatiu
+                </p>
+                <p class="notebook-p row"><br></p>
+                <p class="notebook-p coming-soon-regular">
+                    paragraf 2
+                </p>
+
+                <p class="notebook-p coming-soon-regular font-red">
+                    font-red
+                </p>
+                <p class="notebook-p coming-soon-regular font-blue">
+                    font-blue
+                </p>
+                <p class="notebook-p coming-soon-regular">
+                    <span class="highlight-yellow">
+                        highlight-yellow
+                    </span>
+                </p>
+                <p class="notebook-p coming-soon-regular" >
+                    <span class="highlight-green" >
+                        highlight-green
+                    </span>
+                </p>
+
+                <p class="notebook-p row"><br></p>
+            </div>
+            
+            <div class="row">
+                <h1>
+                    <div class="px-1">
+                        Imagini
+                    </div>
+                </h1>
+                <p class="notebook-p coming-soon-regular">small img</p>
+                <img class="small-img" src="duck.svg">
+                <p class="notebook-p coming-soon-regular">medium img</p>
+                <img class="medium-img" src="duck.svg">
+                <p class="notebook-p coming-soon-regular">big img</p>
+                <img class="big-img" src="duck.svg">
+
+                <p class="notebook-p row"><br></p>
+            </div>
