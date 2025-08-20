@@ -69,11 +69,11 @@
                     </div>
                 </h1>
                 <p class="notebook-p coming-soon-regular">small img</p>
-                <img class="small-img" src="duck.svg">
+                <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/duck.svg">
                 <p class="notebook-p coming-soon-regular">medium img</p>
-                <img class="medium-img" src="duck.svg">
+                <img class="medium-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/duck.svg">
                 <p class="notebook-p coming-soon-regular">big img</p>
-                <img class="big-img" src="duck.svg">
+                <img class="big-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/duck.svg">
                 <p class="notebook-p coming-soon-regular">Test formatare randuri dupa imagini</p>
                 <p class="notebook-p row"><br></p>
             </div>
