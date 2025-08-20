@@ -1,7 +1,7 @@
 [
   "notes/test1;test description",
   "notes/test2;test description",
-  "notes/notebook_demo;Notebook demo with all the features ",
+  "notes/notebook_demo; Notebook demo with all the features ",
   "ctf/test1",
   "notes/test1",
   "notes/test2",
