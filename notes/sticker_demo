@@ -1,0 +1,102 @@
+<div class="row ">
+                <div class="title fw-bold px-4">
+                    <div id="stars-wrapper">
+                        <div class="row stars m-0 notebook-stars"><br></div>
+                            <div id="loaded-title">
+                                <!-- TITLE -->
+                                 Sticker showcase
+                            </div>
+                        <div class="row stars m-0 notebook-stars"><br></div>
+                    </div>
+                </div>
+
+                <!-- CONTENT START -->
+                <p class="notebook-p coming-soon-regular" >
+                    Colectia de imagini create pentru acest blog
+                    <br>
+                    <br>
+                </p>
+                <h1>
+                    <span class="px-1 dotted">
+                        Imagini Main
+                    </span>
+                </h1>
+                <p class="notebook-p coming-soon-regular" >
+                    Animatia initiala pentru main
+                </p>
+                <img class="medium-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/2tap1loop.gif">
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular" >
+                    Svg actual si imaginea din spate
+                    </p>
+                    <img class="medium-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/r_cat2.svg">
+                    <img class="medium-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/cat_background.svg">
+                </div>
+
+                <p class="notebook-p row"><br></p>
+                <div class="row">
+                    <h1>
+                        <span class="px-1 dotted">
+                            Decoratii div-uri
+                        </span>
+                    </h1>
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/border.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/div.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/div_cool.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/spikes1.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/spikes2.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/stars.svg">
+                </div>
+
+                <p class="notebook-p row"><br></p>
+                <div class="row">
+                    <h1>
+                        <span class="px-1 dotted">
+                            Icons
+                        </span>
+                    </h1>
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/ctf_category.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/notes_category.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/favicon_flower.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/favicon_star.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/notebook.svg">
+                </div>
+
+                <p class="notebook-p row"><br></p>
+                <div class="row">
+                    <h1>
+                        <span class="px-1 dotted">
+                            Ilustratii
+                        </span>
+                    </h1>
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/duck.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/iepure.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/mouse.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/sleepy_duck.svg">
+                </div>
+
+                <p class="notebook-p row"><br></p>
+                <div class="row">
+                    <h1>
+                        <span class="px-1 dotted">
+                            Ilustratii nefolosite (inca)
+                        </span>
+                    </h1>
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/bird.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/bird2.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/flowers.svg">
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/dino.svg">
+                    <img class="medium-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/tree.svg">
+                    
+                </div>
+
+                <p class="notebook-p row"><br></p>
+                <div class="row">
+                    <h1>
+                        <span class="px-1 dotted">
+                            Un Wojack obosit pentru erori
+                        </span>
+                    </h1>
+                    <img class="small-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/notes/resources/stickers/wojack.svg">
+                </div>
+                <!-- CONTENT FINISH -->
