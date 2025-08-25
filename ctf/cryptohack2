@@ -1,0 +1,159 @@
+CryptoHack2
+<!-- CONTENT START -->
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Greatest Common Divisor</p>
+                    <p class="notebook-p coming-soon-regular" >calculate gcd(a,b)</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def euclid(a,b):
+    if b == 0:
+        return a
+    return euclid(b,a % b)
+a=26513
+b=52920
+
+print(euclid(a,b))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Extended GCD</p>
+                    <p class="notebook-p coming-soon-regular" >Using the two primes p=26513,q=32321 find the integers u,v such that p⋅u+q⋅v=gcd(p,q)<br>
+Enter whichever of u and v is the lower number as the flag.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def gcdExtended(a, b): 
+    if a == 0 : 
+        return b,0,1
+            
+    gcd,x1,y1 = gcdExtended(b%a, a) 
+    x = y1 - (b//a) * x1 
+    y = x1     
+    return gcd,x,y 
+
+print(gcdExtended(26513,32321))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Arithmetic</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        Calculate the following integers:<br>
+                        11 ≡ x mod6<br>
+                        8146798528947 ≡ y mod17<br>
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+print(8146798528947 % 17)
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Arithmetic 2</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        Now take the prime p = 65537. Calculate 27324678765465536 mod 65537.
+                    </p>
+                    <p class="notebook-p coming-soon-regular" >
+                        <br>
+                        Mica teorema a lui Fermat:
+                        <strong class="highlight-green">a<sup>p − 1</sup> ≡ 1 (mod p)</strong>
+                        <br>
+                        => raspunsul este 1
+                    </p>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Inverting</p>
+                    <p class="notebook-p coming-soon-regular" >
+                       What is the inverse element: d = 3⁻¹ such that 3 · d ≡ 1 mod 13?
+                    </p>
+                    <p class="notebook-p coming-soon-regular" >
+                        <br>
+                        Folosim teorema de mai devreme:<br>
+                        <strong>a<sup>p − 1</sup> ≡ 1 (mod p)</strong><br>
+                        <strong>a<sup>p − 1</sup></strong> poate fi scris ca a<sup>p − 2</sup> · a
+                        <br>
+                        =>a<sup>p − 2</sup> · a ≡ 1 (mod p)
+                        <br>
+                        Inlocuind pentru <strong> 3 · d ≡ 1 (mod 13)</strong> avem <strong>3<sup>13 − 2</sup> · 3 ≡ 1 (mod 13)</strong><br>
+                        =>rezultatul este <strong>3<sup>11</sup>(mod 13)</strong>
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">print(pow(3, 13-2, 13))</code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Quadratic Residues</p>
+                    <p class="notebook-p coming-soon-regular" >
+                       What is the inverse element: d = 3⁻¹ such that 3 · d ≡ 1 mod 13?
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import math
+
+check = [11,6,14]
+for i in range(10):
+    for c in check:
+        r = math.sqrt(29 * i+c)
+        if r == int(r):
+            print(c, r)
+                    </code>
+                    <p class="notebook-p coming-soon-regular font-red" style="font-size: 0.6em;">*nu e o versiune eficienta</p>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Legendre Symbol</p>
+                    <p class="notebook-p coming-soon-regular" >
+                       Given the following 1024 bit prime and 10 integers, find the quadratic residue and then calculate its square root; the square root is your flag. Of the two possible roots, submit the larger one as your answer.
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+p = ...
+ints = [...]
+a = 0
+for i in ints:
+    if pow(i,(p-1)//2,p) == 1:
+        a = i
+        break
+
+print(pow(a,(p+1)//4,p))
+                    </code>
+                    <p class="notebook-p coming-soon-regular">
+                        <code class="notebook-p coming-soon-regular dotted">pow(i,(p-1)//2,p)</code> - Legendre Symbol 
+                        <br>
+                        <br>
+                        Pentru a 2-a parte vom folosi faptul ca <br><strong>a<sup>(p−1)/2</sup> ≡ 1 </strong> <=> <span class="fw-bold font-red">/ · a</span><br>
+                        <strong>a · a<sup>(p−1)/2</sup> ≡ 1 · a </strong> <=> <br>
+                        <strong>a<sup>(p−1)/2 + 1</sup> ≡ a </strong> <=> <br>
+                        <strong>a<sup>(p−1+2)/2</sup> ≡ a </strong> <=> <br>
+                        <strong>a<sup>(p+1)/2</sup> ≡ a </strong> <br><br>
+
+                        Din faptul ca <span class="fst-italic" style="background-color: rgba(0, 0, 0, 0.13);">the prime supplied obeys p = 3 mod 4</span> deducem ca p este de forma 4k + 3 si putem verifica ca numarul sa fie valid<br>
+                        Inlocuindu-l pe p in <strong>a<sup>(p+1)/2</sup> ≡ a </strong> obtinem: <br>
+                        <strong>a<sup>(4k+3+1)/2</sup> ≡ a </strong> <=> <br>
+                        <strong>a<sup>(4k + 4)/2</sup> ≡ a </strong> <=> <br>
+                        <strong>a<sup>2·(2k+2)/2</sup> ≡ a </strong> <=> <br>
+                        <strong>a<sup>(2k+2)</sup> ≡ a </strong><br><br>
+
+                        <strong>a<sup>(2k+2)</sup> ≡ a </strong><=> <span class="fw-bold font-red">/√</span><br>
+                        <strong>a<sup>(2k+2)/2</sup> ≡ a <sup>1/2</sup></strong><=><br>
+                        <strong>a<sup>k+1</sup> ≡ a <sup>1/2</sup> </strong>care este numar intreg<br><br>
+
+                        Intr-un final putem aplica radicalul asupra
+                        <strong>a<sup>(p+1)/2</sup> ≡ a </strong><=> <span class="fw-bold font-red">/√</span><br>
+                        <strong>a<sup>(p+1)/4</sup> ≡ a <sup>1/2</sup></strong> <=> <br>
+                        <code class="notebook-p coming-soon-regular dotted">pow(i,(p+1)//4,p)</code>
+                    </p>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+
+                <!-- CONTENT FINISH -->
