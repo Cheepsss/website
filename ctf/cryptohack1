@@ -1,0 +1,139 @@
+<!-- CONTENT START -->
+<h1>CryptoHack1</h1>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Ascii</p>
+                    <p class="notebook-p coming-soon-regular" > Using the below integer array, convert the numbers to their corresponding ASCII characters to obtain a flag. </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+arr =[99, 114, 121, 112, 116, 111, 123, 65, 83, 67, 73, 73, 95, 112, 114, 49, 110, 116, 52, 98, 108, 51, 125]
+result = ""
+for elem in arr:
+    result += chr(elem)
+
+print(result)
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Hex</p>
+                    <p class="notebook-p coming-soon-regular" >Decode this back into bytes to get the flag.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+a = "63727970746f7b596f755f77696c6c5f62655f776f726b696e675f776974685f6865785f737472696e67735f615f6c6f747d"
+
+print(bytes.fromhex(a))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Base64</p>
+                    <p class="notebook-p coming-soon-regular" >Take the below hex string, decode it into bytes and then encode it into Base64.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import base64
+
+a = "72bca9b68fc16ac7beeb8f849dca1d8a783e8acf9679bf9269f7bf"
+a_bytes = bytes.fromhex(a)
+print(base64.standard_b64encode(a_bytes))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Bytes and Big Integers</p>
+                    <p class="notebook-p coming-soon-regular" >Convert the following integer back into a message:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from Crypto.Util.number import *
+
+a=11515195063862318899931685488813747395775516287289682636499965282714637259206269
+
+print(long_to_bytes(a))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">XOR Starter</p>
+                    <p class="notebook-p coming-soon-regular" >Given the string label, XOR each character with the integer 13. Convert these integers back to a string and submit the flag as crypto{new_string}.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def custom_xor(a, b):
+    b_array = [ord(letter) for letter in b]
+    res = []
+    for number in b_array:
+        res.append(number ^ a)
+    return "".join(chr(r) for r in res)
+
+b = "label"
+a = 13
+
+print(custom_xor(a,b))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">XOR Properties</p>
+                    <p class="notebook-p coming-soon-regular" style="white-space: pre-wrap;">Below is a series of outputs where three random keys have been XOR'd together and with the flag. Use the above properties to undo the encryption in the final line to obtain the flag.
+KEY1 = 
+KEY2 ^ KEY1 = 
+KEY2 ^ KEY3 = 
+FLAG ^ KEY1 ^ KEY3 ^ KEY2 =</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def custom_xor(a, b):
+    b_array = [ord(letter) for letter in b]
+    res = []
+    for number in b_array:
+        res.append(number ^ a)
+    return "".join(chr(r) for r in res)
+
+b = "label"
+a = 13
+
+print(custom_xor(a,b))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Favourite byte</p>
+                    <p class="notebook-p coming-soon-regular" >I've hidden some data using XOR with a single byte, but that byte is a secret. Don't forget to decode from hex first.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from pwn import *
+a = "73626960647f6b206821204f21254f7d694f7624662065622127234f726927756d"
+a_bytes = bytes.fromhex(a)
+
+
+for i in range(0, 256):
+    i_bytes = int(i).to_bytes()
+    xored = xor(i_bytes, a_bytes)
+    if xored.startswith(b"crypto{"):
+        print(i, xored)
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">You either know, XOR you don't</p>
+                    <p class="notebook-p coming-soon-regular" >I've encrypted the flag with my secret key, you'll never be able to guess it.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from pwn import *
+
+flag = 
+flag_bytes = bytes.fromhex(flag)
+print(xor(flag_bytes,b'crypto{'))
+print(xor(flag_bytes,b'myXORkey'))
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                
+                 
+                <!-- CONTENT FINISH -->
