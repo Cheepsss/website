@@ -1,4 +1,5 @@
 [
+  {"path":"ctf/cryptohack1", "title":"CryptoHack intro", "description":"CryptoHack intro"},
   {"path":"notes/sticker_demo", "title":"Stickers :3", "description":"Showcase ilustratii"},
   {"path":"notes/notebook_demo", "title":"Notebook demo", "description":"Demo formatare"}
 ]
