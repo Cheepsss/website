@@ -1,5 +1,6 @@
 CryptoHack2
-<!-- CONTENT START -->
+
+                <!-- CONTENT START -->
                 <div class="row">
                     <p class="notebook-p coming-soon-regular"><br></p>
                     <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Greatest Common Divisor</p>
@@ -155,5 +156,219 @@ print(pow(a,(p+1)//4,p))
                     <p class="notebook-p coming-soon-regular"><br></p>
                 </div>
 
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Square Root</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        In SageMath:
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from sympy.ntheory.residue_ntheory import nthroot_mod
+nthroot_mod(int(a),2,int(p),all_roots=True)
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
 
-                <!-- CONTENT FINISH -->
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Chinese Remainder Theorem</p>
+                    <p class="notebook-p coming-soon-regular" >
+                       Given the following set of linear congruences:<br>
+                       x ≡ 2 (mod 5)<br>
+                       x ≡ 3 (mod 11)<br>
+                       x ≡ 5 (mod 17)<br>
+                       Find the integer <span class="fw-bold">a</span> such that <span class="fw-bold">x ≡ a (mod 935)</span><br><br>
+                    </p>
+                    <p class="notebook-p coming-soon-regular dotted" style="background-color: rgba(151, 240, 42, 0.13);">
+                        <span class="fw-bold highlight-green">Chinese Remainder Theorem</span> <br>
+                        Let  <strong>m1,m2,…,mk</strong> be natural numbers such that each is greater than 1, and every pair of them is relatively prime.<br>
+                        Let <strong>a1,a2,…,ak</strong> be integers.<br>
+                        The system of congruences <br>
+                        <strong>
+                        x ≡ a<sub>1</sub> (mod m1)<br>
+                        x ≡ a<sub>2</sub> (mod m2)<br>
+                        .<br>
+                        .<br>
+                        .<br>
+                        x ≡ a<sub>k</sub> (mod m<sub>k</sub>)<br>
+                        </strong>
+                        has a unique solution mod <strong>M</strong>, where <strong>M=m<sub>1</sub>m<sub>2</sub>⋯m<sub>k</sub></strong>
+                    </p>
+                    <p class="notebook-p coming-soon-regular">
+                        <br>
+                        <strong>Notatii:</strong><br>
+                        <strong>M = m<sub>1</sub>·m<sub>2</sub>...m<sub>k</sub>​</strong><br>
+                        <strong>M<sub>i</sub> = M/m<sub>i</sub></strong> - produsul tuturor modulelor, fara m<sub>i</sub><br>
+                        <strong>y<sub>i</sub> = M<sub>i</sub><sup>-1</sup></strong> - inversa lui M<sub>i</sub> mod m<sub>i</sub>. <strong>M<sub>i</sub>·y<sub>i</sub> = 1</strong>
+                        <br><br>
+                        Solutia este data de <strong>x = ∑<sub>1</sub><sup>k</sup> a<sub>i</sub> · M<sub>i</sub> · y<sub>i</sub></strong><br>
+
+                    </p>
+                    <p class="notebook-p coming-soon-regular">
+                        <br>
+                        <strong>Explicatie:</strong><br>
+                        Pentru mine aceasta teorema nu a avut sens fara teorema izomorfismului de inele:<br>
+                        <span class="dotted font-red">
+                            fie <strong>m<sub>1</sub>, m<sub>2</sub> ∈ N</strong> coprime. => <strong>ℤ/(m<sub>1</sub>·m<sub>2</sub>) ≅ ℤ/m<sub>1</sub> × ℤ/m<sub>2</sub></strong>
+                        </span>
+                        <br>Numerele trebuie sa fie coprime pentru a se pastra injectivitatea<br>
+                        <br>
+                        <strong>CRT</strong> se bazeaza pe acest lucru si defineste o functie <br>
+                        <strong>ϕ:Z/(m1​m2​)⟶Z/m1​×Z/m2​</strong><br>
+                        <strong>ϕ([x]m1​m2​​)=([x]m1​​, [x]m2​​)</strong><br>
+                        De asemenea, exista definita si inversa acesteia:<br>
+                        <strong>ϕ<sup>−1</sup>(a,b) = x ≡ ∑<sub>1</sub><sup>k</sup> a<sub>i</sub> · M<sub>i</sub> · y<sub>i</sub></strong> care este solutia cautata <br>
+                    </p>
+
+                    <p class="notebook-p coming-soon-regular">
+                        <br>
+                        <strong>Rezolvare:</strong><br>
+                        Clasica:<br>
+                        M = 5 * 11 * 17 = 935<br>
+                        M1 = 11 * 17 = 187<br>
+                        M2 = 5 * 17 = 85<br>
+                        M3 = 5 * 11<br>
+                        <br>
+                        y1 = 187<sup>-1</sup> mod5 = 3 <br>
+                        y2 = 85<sup>-1</sup> mod11 = 7 <br>
+                        y3 = 55<sup>-1</sup> mod17 = 13 <br>
+                        <br>
+                        x=2*187*3 + 3*85*7 + 5*55*13 = 1122 + 1785 + 3575 = 6482<br>
+                        6482 mod935 = 872<br>
+                        <br>
+                        In SageMath:
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+crt([2,3,5],[5,11,17])
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Adrien's Signs</p>
+                    <p class="notebook-p coming-soon-regular" >Codul primit:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def encrypt_flag(flag):
+    ciphertext = []
+    plaintext = ''.join([bin(i)[2:].zfill(8) for i in flag])
+    for b in plaintext:
+        e = randint(1, p)
+        n = pow(a, e, p)
+        if b == '1':
+            ciphertext.append(n)
+        else:
+            n = -n % p
+            ciphertext.append(n)
+    return ciphertext
+                    </code>
+                    <p class="notebook-p coming-soon-regular dotted" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <strong class="underline highlight-green">Legendre symbol</strong><br>
+                    <strong>(a / p) = 0</strong> if a ≡ 0 mod p<br>
+                    <strong>(a / p) = 1</strong> if a is a quadratic residue mod p<br>
+                    <strong>(a / p) = -1</strong> if a is a non-quadratic residue mod p<br><br>
+                    <strong class="underline highlight-green">Euler criterion</strong><br>
+                    For an odd prime p and an integer a not divisible by p:<br>
+                    <strong>(a / p) ≡ a<sup>(p - 1) / 2</sup> mod p</strong>
+                    </p>
+                    <p class="notebook-p coming-soon-regular">
+                        <br>
+                        Explicatie:<br>
+                        Cand bitul este 1, se adauga n la cifru<br>
+                        Cand bitul este 0, sa adauga -n la cifru<br>
+                        <br>
+                        Pentru ca a este quadratic residue, a<sup>e</sup>= n este mereu quadratic residue<br>
+                        -n nu este quadratic residue si putem verifica folosind criteriul lui Euler
+
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def decrypt(ciphertext, p):
+    bits = []
+    for c in ciphertext:
+        legendre = pow(c, (p - 1) // 2, p)
+        if legendre == 1:
+            bits.append('1')
+        else:
+            bits.append('0')
+
+    b_list = [bits[i:i+8] for i in range(0, len(bits), 8)]
+    
+    f_bytes = bytearray()
+    for b_bits in b_list:
+        b_str = ''.join(b_bits)
+        f_bytes.append(int(b_str, 2))
+    
+    return f_bytes.decode()
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                
+
+                <div class="row" style="flex-direction: column;">
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Binomials</p>
+                    <p class="notebook-p coming-soon-regular">
+                        Rearrange the following equations to get the primes p,q<br><br>
+                        N = p × q<br>
+                        c<sub>1</sub> = (2 × p + 3 × q)<sup>e₁</sup> mod N<br>
+                        c<sub>2</sub> = (5 × p + 7 × q)<sup>e₂</sup> mod N
+
+                    </p>
+                    <p class="notebook-p coming-soon-regular dotted " style="background-color: rgba(151, 240, 42, 0.13);">
+                    <strong class="underline highlight-green">Combinari de n luate cate k</strong><br>
+                    <strong>C(n, k) = n! / (k! * (n - k)!)</strong><br>
+                    <strong class="underline highlight-green">Binomul lui Newton</strong><br>
+                        (a + b)<sup>n</sup> = 
+  &sum;<sub>k=0</sub><sup>n</sup> (C
+  <sup>n</sup><sub>k</sub>) &middot; a<sup>n - k</sup> &middot; b<sup>k</sup><br>
+                    </p>
+                    <p class=" notebook-p coming-soon-regular">
+                        <br>
+                        Solutie:
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+N =... e1 =... e2 =... c1 =... c2 =...
+
+a1 = 2 b1 = 3 a2 = 5 b2 = 7
+
+a1_inv = inverse_mod(a1, N)
+b1_inv = inverse_mod(b1, N)
+a2_inv = inverse_mod(a2, N)
+b2_inv = inverse_mod(b2, N)
+
+m = power_mod(a2 * a1_inv, e1 * e2, N)
+m2 = power_mod(b2 * b1_inv, e1 * e2, N)
+
+
+c1_exp = power_mod(c1, e2, N)
+c2_exp = power_mod(c2, e1, N)
+
+
+q_pow = (m * c1_exp - c2_exp) % N
+p_pow = (m2 * c1_exp - c2_exp) % N
+
+# Compute gcd with N
+# the division is not needed beause N=p*q
+# gcd(q,N) = q
+# gcd(q * u, N) = q (because u doesn's divide N)
+q = gcd(q_pow, N)
+p = gcd(p_pow, N)
+
+print("Recovered primes:")
+print("p =", p)
+print("q =", q)
+
+                    </code>
+                    
+                    <p class=" notebook-p coming-soon-regular btn-link notebook-p p-0" data-bs-toggle="collapse" data-bs-target="#collapseDemo" aria-expanded="true" aria-controls="collapseDemo">
+                        Explicatii formule ->
+                    </p>
+                    <div id="accordion" class="p-0">
+                        <div id="collapseDemo" class="collapse" data-bs-parent="#accordion">
+                            <img class="img-fluid" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/ctf/resources/demo1.png">
+                        </div>
+                    </div>
+                </div>
+                
+                
+
