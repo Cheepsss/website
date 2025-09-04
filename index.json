@@ -1,6 +1,7 @@
 [ 
-  {"path":"ctf/cryptohack3", "title":"CryptoHack 3", "description":"Capitolul Symmetric Cryptography"},
-  {"path":"ctf/cryptohack2", "title":"CryptoHack 2", "description":"Capitolul Modular Arithmetic"},
+  {"path":"ctf/cryptohack4", "title":"CryptoHack 4", "description":"Public-Key Cryptography"},
+  {"path":"ctf/cryptohack3", "title":"CryptoHack 3", "description":"Symmetric Cryptography"},
+  {"path":"ctf/cryptohack2", "title":"CryptoHack 2", "description":"Modular Arithmetic"},
   {"path":"ctf/cryptohack1", "title":"CryptoHack intro", "description":"CryptoHack intro"},
   {"path":"notes/sticker_demo", "title":"Stickers :3", "description":"Showcase ilustratii"},
   {"path":"notes/notebook_demo", "title":"Notebook demo", "description":"Demo formatare"}
