@@ -1,0 +1,655 @@
+CryptoHack3 - AES
+<!-- CONTENT START -->
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <h1><div>Symmetric Cryptography - AES</div></h1>
+                    <img src="https://cryptohack.org/static/img/aes/Structure.png" class="big-img">
+                </div>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">3. Structure of AES</p>
+                    <p class="notebook-p coming-soon-regular" >Write a matrix2bytes function to turn that matrix back into bytes, and submit the resulting plaintext as the flag.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def matrix2bytes(matrix):
+    """ Converts a 4x4 matrix into a 16-byte array.  """
+    return "".join([chr(x) for row in matrix for x in row])
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">4. Round Keys</p>
+                    <p class="notebook-p coming-soon-regular" >Complete the add_round_key function, then use the matrix2bytes function to get your next flag.</p>
+                    <img src="https://cryptohack.org/static/img/aes/AddRoundKey.png" class="medium-img">
+                    <code class="notebook-p coming-soon-regular dotted">
+def add_round_key(s, k):
+    res = []
+    for i in range(4):
+        res_row = []
+        for j in range(4):
+            res_row.append(s[i][j]^k[i][j])
+        res.append(res_row)
+    return res
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">5. Confusion through Substitution</p>
+                    <p class="notebook-p coming-soon-regular" >Implement sub_bytes, send the state matrix through the inverse S-box and then convert it to bytes to get the flag.</p>
+                    <img src="https://cryptohack.org/static/img/aes/Substitution.png" class="medium-img">
+                    <code class="notebook-p coming-soon-regular dotted">
+def sub_bytes(s, sbox=s_box):
+    res = []
+    for row in s:
+        res_row = []
+        for elem in row:
+            res_row.append(sbox[elem])
+        res.append(res_row)
+    return res
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">6. Diffusion through Permutation</p>
+                    <p class="notebook-p coming-soon-regular" > After implementing inv_shift_rows, take the state, run inv_mix_columns on it, then inv_shift_rows, convert to bytes and you will have your flag.</p>
+                    <img src="https://cryptohack.org/static/img/aes/ShiftRows.png" class="small-img">
+                    <img src="https://cryptohack.org/static/img/aes/MixColumns.png" class="small-img">
+                    <code class="notebook-p coming-soon-regular dotted">
+def inv_shift_rows(s):
+    s[1][1], s[2][1], s[3][1], s[0][1] = s[0][1], s[1][1], s[2][1], s[3][1]
+    s[2][2], s[3][2], s[0][2], s[1][2] = s[0][2], s[1][2], s[2][2], s[3][2]
+    s[3][3], s[0][3], s[1][3], s[2][3] = s[0][3], s[1][3], s[2][3], s[3][3]
+
+def inv_mix_columns(s):
+    # see Sec 4.1.3 in The Design of Rijndael
+    for i in range(4):
+        u = xtime(xtime(s[i][0] ^ s[i][2]))
+        v = xtime(xtime(s[i][1] ^ s[i][3]))
+        s[i][0] ^= u
+        s[i][1] ^= v
+        s[i][2] ^= u
+        s[i][3] ^= v
+
+    mix_columns(s)
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">7. Bringing It All Together</p>
+                    <p class="notebook-p coming-soon-regular" >Copy in all the building blocks you've coded so far, and complete the decrypt function that implements the steps shown in the diagram. The decrypted plaintext is the flag.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+def decrypt(key, ciphertext):
+    round_keys = expand_key(key) # Remember to start from the last round key and work backwards through them when decrypting
+
+    # Convert ciphertext to state matrix
+    state = bytes2matrix(ciphertext)
+    # Initial add round key step
+    state = add_round_key(state, round_keys[N_ROUNDS])
+
+    for i in range(N_ROUNDS - 1, 0, -1):
+        inv_shift_rows(state)
+        state = sub_bytes(state, inv_s_box)
+        state = add_round_key(state, round_keys[i])
+        inv_mix_columns(state)
+
+
+    # Run final round (skips the InvMixColumns step)
+    inv_shift_rows(state)
+    state = sub_bytes(state, inv_s_box)
+    state = add_round_key(state, round_keys[0])
+    # Convert state matrix to plaintext
+    plaintext = matrix2bytes(state)
+
+    return plaintext
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">8. Passwords as Keys</p>
+                    <p class="notebook-p coming-soon-regular" >It is essential that keys in symmetric-key algorithms are random bytes, instead of passwords or other predictable data. The random bytes should be generated using a cryptographically-secure pseudorandom number generator (CSPRNG). If the keys are predictable in any way, then the security level of the cipher is reduced and it may be possible for an attacker who gets access to the ciphertext to decrypt it.
+<br>
+Just because a key looks like it is formed of random bytes, does not mean that it necessarily is. In this case the key has been derived from a simple password using a hashing function, which makes the ciphertext crackable.
+<br>
+For this challenge you may script your HTTP requests to the endpoints, or alternatively attack the ciphertext offline. Good luck!</p>
+                    <p class="notebook-p coming-soon-regular fw-bold"><br>Source:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from Crypto.Cipher import AES
+import hashlib
+import random
+
+
+# /usr/share/dict/words from
+# https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words
+with open("/usr/share/dict/words") as f:
+    words = [w.strip() for w in f.readlines()]
+keyword = random.choice(words)
+
+KEY = hashlib.md5(keyword.encode()).digest()
+FLAG = ?
+
+
+@chal.route('/passwords_as_keys/decrypt/&lt;ciphertext&gt;/&lt;password_hash&gt;/')
+def decrypt(ciphertext, password_hash):
+    ciphertext = bytes.fromhex(ciphertext)
+    key = bytes.fromhex(password_hash)
+
+    cipher = AES.new(key, AES.MODE_ECB)
+    try:
+        decrypted = cipher.decrypt(ciphertext)
+    except ValueError as e:
+        return {"error": str(e)}
+
+    return {"plaintext": decrypted.hex()}
+
+
+@chal.route('/passwords_as_keys/encrypt_flag/')
+def encrypt_flag():
+    cipher = AES.new(KEY, AES.MODE_ECB)
+    encrypted = cipher.encrypt(FLAG.encode())
+
+    return {"ciphertext": encrypted.hex()}
+
+                    </code>
+                    <p class="notebook-p"><br></p>
+                </div>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Solutie:</p>
+                    <p class="notebook-p coming-soon-regular" >Se poate folosi dictionarul mentionat in codul sursa primit.</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import requests 
+from Crypto.Cipher import AES 
+import hashlib
+
+def test_word(word, ciphertext):
+    key = hashlib.md5(word.encode()).digest()
+    cipher = AES.new(key, AES.MODE_ECB)
+    try:
+        decrypted = cipher.decrypt(ciphertext)
+    except ValueError as e:
+        return {"error": str(e)}
+
+    try:
+        plain = decrypted.decode("utf-8")
+        return plain
+    except:
+        return
+    
+
+encrypt_flag = {"ciphertext":"c92b7734070205bdf6c0087a751466ec13ae15e6f1bcdd3f3a535ec0f4bbae66"}
+ciphertext = bytes.fromhex(encrypt_flag["ciphertext"])
+
+r = requests.get("https://gist.githubusercontent.com/wchargin/8927565/raw/d9783627c731268fb2935a731a618aa8e95cf465/words")
+wordlist = r.text
+
+for w in wordlist.split("\n"):
+    res = test_word(w,ciphertext)
+    if res:
+        print(res,hashlib.md5(w.encode()).hexdigest())
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">9. ECB Oracle</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        ECB is the most simple mode, with each plaintext block encrypted entirely independently. In this case, your input is prepended to the secret flag and encrypted and that's it. We don't even provide a decrypt function. Perhaps you don't need a padding oracle when you have an "ECB oracle"?
+                    </p>
+                    <img src="https://aes.cryptohack.org/static/img/aes/ECB_encryption.svg" class="medium-img" style="background-color: rgba(31, 22, 82, 0.812);">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Source:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+
+
+KEY = ?
+FLAG = ?
+
+
+@chal.route('/ecb_oracle/encrypt/&lt;plaintext&gt;/')
+def encrypt(plaintext):
+    plaintext = bytes.fromhex(plaintext)
+
+    padded = pad(plaintext + FLAG.encode(), 16)
+    cipher = AES.new(KEY, AES.MODE_ECB)
+    try:
+        encrypted = cipher.encrypt(padded)
+    except ValueError as e:
+        return {&quot;error&quot;: str(e)}
+
+    return {&quot;ciphertext&quot;: encrypted.hex()}
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Solutie:</p>
+                    <p class="notebook-p coming-soon-regular" >Deoarece inputul este controlat de catre utilizator, se poate folosi brute-force caracter cu caracter.
+                        <br>
+                        Detalii:
+                        <br>
+                        <a class="notebook-p coming-soon-regular">https://www.ctfrecipes.com/cryptography/symmetric-cryptography/aes/mode-of-operation/ecb/ecb-oracle</a>
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import requests
+import json
+
+
+# text + FLAG format
+def get_encrypted(plaintext):
+    url = f&quot;https://aes.cryptohack.org/ecb_oracle/encrypt/{plaintext}/&quot;
+    r = requests.get(url)
+    result = json.loads(r.text)
+    return result[&quot;ciphertext&quot;]
+
+class ECBOracleSolver():
+    def __init__(self, start=0):
+        cipher = get_encrypted(start*&quot;00&quot;)
+
+        length = len(cipher)
+        self.nr_of_blocks = length//32
+        self.guess_blocks()
+        
+    def brute_force_block(self,i, flag_char_nr, guessed):
+        wanted = get_encrypted(&quot;00&quot;*((i+1)*16 - flag_char_nr))[i*32:i*32+32]
+        for character in range(32,128):
+            plaintext = &quot;00&quot;*(32 - flag_char_nr) + guessed
+            factored = plaintext + hex(character).replace(&quot;0x&quot;,&quot;&quot;)
+            enc = get_encrypted(factored)
+            if enc[i*32:i*32+32] == wanted:
+                return hex(character).replace(&quot;0x&quot;,&quot;&quot;), chr(character)
+        return &quot;XX&quot;,&quot;XX&quot;
+
+    def guess_blocks(self):
+        flag = &quot;&quot;
+        for i in range(self.nr_of_blocks - 1, -1, -1):
+            hex_string = &quot;&quot;
+            for flag_pos in range(1, 33):
+                guessed_char_hex, guessed_char_chr = self.brute_force_block(i,flag_pos,hex_string)
+                if guessed_char_chr != &quot;XX&quot;:
+                    flag += guessed_char_chr
+                    print(f&quot;FLAG:{flag}&quot;)
+                    hex_string += guessed_char_hex
+                else:
+                    print(&quot;Couldn't find char&quot;)
+
+e = ECBOracleSolver(1)
+
+                    </code>
+                </div>
+
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">10. ECB CBC WTF</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        Here you can encrypt in CBC but only decrypt in ECB. That shouldn't be a weakness because they're different modes... right?
+                    </p>
+                    <img src="https://aes.cryptohack.org/static/img/aes/CBC_encryption.svg" class="medium-img" style="background-color: rgba(31, 22, 82, 0.812);">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Source:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from Crypto.Cipher import AES
+
+
+KEY = ?
+FLAG = ?
+
+
+@chal.route('/ecbcbcwtf/decrypt/&ltciphertext>/')
+def decrypt(ciphertext):
+    ciphertext = bytes.fromhex(ciphertext)
+
+    cipher = AES.new(KEY, AES.MODE_ECB)
+    try:
+        decrypted = cipher.decrypt(ciphertext)
+    except ValueError as e:
+        return {"error": str(e)}
+
+    return {"plaintext": decrypted.hex()}
+
+
+@chal.route('/ecbcbcwtf/encrypt_flag/')
+def encrypt_flag():
+    iv = os.urandom(16)
+
+    cipher = AES.new(KEY, AES.MODE_CBC, iv)
+    encrypted = cipher.encrypt(FLAG.encode())
+    ciphertext = iv.hex() + encrypted.hex()
+
+    return {"ciphertext": ciphertext}
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Solutie:</p>
+                    <p class="notebook-p coming-soon-regular" >
+
+                        Criptare ECB:<br>
+                        &ensp; block_cipher_encryption() aplicat separat pe fiecare bloc<br>
+                        <br>
+                        Criptare CBC:<br>
+                        &ensp;Bloc 1: <br>
+                        &ensp;&ensp;&bull; IV ^ Plaintext<br>
+                        &ensp;&ensp;&bull; block_cipher_encryption()<br>
+                        &ensp;Restul: <br>
+                        &ensp;&ensp;&bull; Ciphertext anterior ^ Plaintext<br>
+                        &ensp;&ensp;&bull; block_cipher_encryption()<br>
+                        <br>
+                        In cazul decriptarii in mod ECB a unui ciphertext encriptat CBC, se aplica doar functia de block_cipher_decryption, pentru fiecare block<br>
+                        Pentru a obtine plaintext pentru blocul 1, se face XOR cu IV-ul<br>
+                        Pentru a obtine plaintext pentru restul de blocuri, se face XOR cu cifrul anterior
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import requests
+import json
+
+
+r = requests.get(&quot;https://aes.cryptohack.org/ecbcbcwtf/encrypt_flag/&quot;)
+data = json.loads(r.text)
+ciphertext = data[&quot;ciphertext&quot;]
+print(f&quot;IV: {ciphertext[:32]}&quot;)
+print(f&quot;Ciphertext: {ciphertext[32:]}&quot;)
+print(f&quot;Ciphertext Part I: {ciphertext[32:64]}&quot;)
+print(f&quot;Ciphertext Part II: {ciphertext[64:]}&quot;)
+
+# FIRST PART - XORED WITH IV
+r = requests.get(f&quot;https://aes.cryptohack.org/ecbcbcwtf/decrypt/{ciphertext[32:64]}&quot;)
+data = json.loads(r.text)
+plaintext = data[&quot;plaintext&quot;]
+
+bytes_plaintext = bytes.fromhex(plaintext)
+bytes_IV = bytes.fromhex(ciphertext[:32])
+
+def xor_strings(xs, ys):
+    return &quot;&quot;.join(chr(x ^ y) for x, y in zip(xs, ys))
+
+xored = xor_strings(bytes_plaintext, bytes_IV)
+print(f&quot;Flag I: {xored}&quot;)
+
+
+# SECOND PART - XORED WITH PREVIOUS CIPHERTEXT
+r = requests.get(f&quot;https://aes.cryptohack.org/ecbcbcwtf/decrypt/{ciphertext[64:]}&quot;)
+data = json.loads(r.text)
+plaintextII = data[&quot;plaintext&quot;]
+
+bytes_plaintextII = bytes.fromhex(plaintextII)
+bytes_cipherI = bytes.fromhex(ciphertext[32:64])
+
+xored = xor_strings(bytes_plaintextII, bytes_cipherI)
+print(f&quot;Flag II: {xored}&quot;)
+                    </code>
+                </div>
+            
+
+            <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">11. Flipping Cookie</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        You can get a cookie for my website, but it won't help you read the flag... I think.
+                    </p>
+                    <img src="https://aes.cryptohack.org/static/img/aes/CBC_decryption.svg" class="medium-img" style="background-color: rgba(31, 22, 82, 0.812);">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Source:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from Crypto.Cipher import AES
+import os
+from Crypto.Util.Padding import pad, unpad
+from datetime import datetime, timedelta
+
+
+KEY = ?
+FLAG = ?
+
+
+@chal.route('/flipping_cookie/check_admin/&lt;cookie>/&lt;iv>/')
+def check_admin(cookie, iv):
+    cookie = bytes.fromhex(cookie)
+    iv = bytes.fromhex(iv)
+
+    try:
+        cipher = AES.new(KEY, AES.MODE_CBC, iv)
+        decrypted = cipher.decrypt(cookie)
+        unpadded = unpad(decrypted, 16)
+    except ValueError as e:
+        return {"error": str(e)}
+
+    if b"admin=True" in unpadded.split(b";"):
+        return {"flag": FLAG}
+    else:
+        return {"error": "Only admin can read the flag"}
+
+
+@chal.route('/flipping_cookie/get_cookie/')
+def get_cookie():
+    expires_at = (datetime.today() + timedelta(days=1)).strftime("%s")
+    cookie = f"admin=False;expiry={expires_at}".encode()
+
+    iv = os.urandom(16)
+    padded = pad(cookie, 16)
+    cipher = AES.new(KEY, AES.MODE_CBC, iv)
+    encrypted = cipher.encrypt(padded)
+    ciphertext = iv.hex() + encrypted.hex()
+
+    return {"cookie": ciphertext}
+
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Solutie:</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        Ultimul pas in decriptare este aplicarea XOR-ului cu IV-ul. Acesta poate fi schimbat astfel incat rezultatul sa fie valoarea dorita.
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import requests
+import json
+
+
+r = requests.get("https://aes.cryptohack.org/flipping_cookie/get_cookie/")
+data = json.loads(r.text)
+cookie = data["cookie"]
+iv = cookie[:32]
+print(f"IV: {iv}")
+print(f"Ciphertext: {cookie[32:]}")
+print(f"Ciphertext Part I: {cookie[32:64]}")
+print(f"Ciphertext Part II: {cookie[64:]}")
+
+bytes_IV = bytes.fromhex(iv)
+normal_flag = b"admin=False;expi"
+def xor_strings(xs, ys):
+    return bytes(a ^ b for a, b in zip(xs, ys))
+
+xored = xor_strings(bytes_IV, normal_flag)
+
+tampered_iv = xor_strings(xored, b"admin=True;;expi")
+
+print(xor_strings(xored, tampered_iv))
+
+r = requests.get(f"https://aes.cryptohack.org/flipping_cookie/check_admin/{cookie[32:]}/{tampered_iv.hex()}/")
+print(r.text)
+                    </code>
+                </div>
+            
+
+            <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">12. Symmetry</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        Some block cipher modes, such as OFB, CTR, or CFB, turn a block cipher into a stream cipher. The idea behind stream ciphers is to produce a pseudorandom keystream which is then XORed with the plaintext. One advantage of stream ciphers is that they can work of plaintext of arbitrary length, with no padding required.
+<br>
+OFB is an obscure cipher mode, with no real benefits these days over using CTR. This challenge introduces an unusual property of OFB.
+                    </p>
+                    <img src="https://aes.cryptohack.org/static/img/aes/OFB_encryption.svg" class="medium-img" style="background-color: rgba(31, 22, 82, 0.812);">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Source:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from Crypto.Cipher import AES
+
+
+KEY = ?
+FLAG = ?
+
+
+@chal.route('/symmetry/encrypt/&lt;plaintext>/&lt;iv>/')
+def encrypt(plaintext, iv):
+    plaintext = bytes.fromhex(plaintext)
+    iv = bytes.fromhex(iv)
+    if len(iv) != 16:
+        return {"error": "IV length must be 16"}
+
+    cipher = AES.new(KEY, AES.MODE_OFB, iv)
+    encrypted = cipher.encrypt(plaintext)
+    ciphertext = encrypted.hex()
+
+    return {"ciphertext": ciphertext}
+
+
+@chal.route('/symmetry/encrypt_flag/')
+def encrypt_flag():
+    iv = os.urandom(16)
+
+    cipher = AES.new(KEY, AES.MODE_OFB, iv)
+    encrypted = cipher.encrypt(FLAG.encode())
+    ciphertext = iv.hex() + encrypted.hex()
+
+    return {"ciphertext": ciphertext}
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Solutie:</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        Pentru a obtine partea de block cipher encryption aplicata asupra IV-ului putem seta Plaintext-ul in \x00 astfel incat xor-ul sa nu aibe efect.<br>
+                        Dupa aceea, pentru a obtine valoarea FLAG-ului se face xor intre ciphertext-ul aplicat pe FLAG si cel aplicat pe 00
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import requests
+import json
+
+r = requests.get("https://aes.cryptohack.org/symmetry/encrypt_flag/")
+data = json.loads(r.text)
+
+ciphertext = data["ciphertext"]
+iv = ciphertext[:32]
+print(f"IV: {iv}")
+print(f"Ciphertext: {ciphertext[32:]}")
+print(f"Ciphertext Part I: {ciphertext[32:64]}")
+print(f"Ciphertext Part II: {ciphertext[64:]}")
+
+
+zeroed = "00"*64
+r = requests.get(f"https://aes.cryptohack.org/symmetry/encrypt/{zeroed}/{iv}")
+data = json.loads(r.text)
+encrypted = data["ciphertext"]
+
+
+bytes_ciphertext = bytes.fromhex(ciphertext[32:])
+bytes_encrypted = bytes.fromhex(encrypted)
+
+def xor_strings(xs, ys):
+    return bytes(a ^ b for a, b in zip(xs, ys))
+
+print(xor_strings(bytes_ciphertext, bytes_encrypted))
+                    </code>
+                </div>
+
+
+        <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">13. Bean Counter</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        I've struggled to get PyCrypto's counter mode doing what I want, so I've turned ECB mode into CTR myself. My counter can go both upwards and downwards to throw off cryptanalysts! There's no chance they'll be able to read my picture.
+                    </p>
+
+                    <img src="https://aes.cryptohack.org/static/img/aes/CTR_encryption.svg" class="medium-img" style="background-color: rgba(31, 22, 82, 0.812);">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Source:</p>
+                    <code class="notebook-p coming-soon-regular dotted">
+from Crypto.Cipher import AES
+
+
+KEY = ?
+
+
+class StepUpCounter(object):
+    def __init__(self, step_up=False):
+        self.value = os.urandom(16).hex()
+        self.step = 1
+        self.stup = step_up
+
+    def increment(self):
+        if self.stup:
+            self.newIV = hex(int(self.value, 16) + self.step)
+        else:
+            self.newIV = hex(int(self.value, 16) - self.stup)
+        self.value = self.newIV[2:len(self.newIV)]
+        return bytes.fromhex(self.value.zfill(32))
+
+    def __repr__(self):
+        self.increment()
+        return self.value
+
+
+
+@chal.route('/bean_counter/encrypt/')
+def encrypt():
+    cipher = AES.new(KEY, AES.MODE_ECB)
+    ctr = StepUpCounter()
+
+    out = []
+    with open("challenge_files/bean_flag.png", 'rb') as f:
+        block = f.read(16)
+        while block:
+            keystream = cipher.encrypt(ctr.increment())
+            xored = [a^b for a, b in zip(block, keystream)]
+            out.append(bytes(xored).hex())
+            block = f.read(16)
+
+    return {"encrypted": ''.join(out)}
+                    </code>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular fw-bold" ><br>Solutie:</p>
+                    <p class="notebook-p coming-soon-regular" >
+                        Problema apare din cauza faptului ca linia  <strong>self.newIV = hex(int(self.value, 16) + self.step)</strong> nu este apelata niciodata, ceea ce inseamna ca se face XOR cu aceeasi valoare.<br>
+                        Pentru a afla aceasta valoare se poate face XOR intre primii 16 bytes ai header-ului unui PNG si primii 16 bytes ai ciphertext-ului.
+                    </p>
+                    <code class="notebook-p coming-soon-regular dotted">
+import requests
+import json
+from Crypto.Cipher import AES
+
+def xor_strings(xs, ys):
+    return bytes(a ^ b for a, b in zip(xs, ys))
+
+
+png_header =  b'\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00\x0d\x49\x48\x44\x52'
+
+r = requests.get("https://aes.cryptohack.org/bean_counter/encrypt/")
+data = json.loads(r.text)
+
+
+ciphertext = data["encrypted"]
+bytes_ciphertext = bytes.fromhex(ciphertext)
+xored = bytes(a^b for a, b in zip(png_header, bytes_ciphertext))
+
+
+repeated_xored = (xored * (len(bytes_ciphertext)//len(xored) + 1))[:len(bytes_ciphertext)]
+plainimage = xor_strings(repeated_xored,bytes_ciphertext)
+print(plainimage[:16])
+
+with open("recovered_img.png", "wb") as f:
+    f.write(plainimage)
+                    </code>
+                </div>
+
+
+
+            
+                <!-- CONTENT FINISH -->
