@@ -1,0 +1,717 @@
+CryptoHack5
+<!-- CONTENT START -->
+<div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <h1><div>Elliptic Curves</div></h1>
+                </div>
+                <a class="notebook-p coming-soon-regular" href="https://github.com/elikaski/ECC_Attacks">ECC Intro & attacks</a>
+
+                <div class="row">
+                    <img src="https://cryptohack.org/static/img/ECClines.svg" class="small-img" >
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">1. Background Reading</p>
+                    <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                        <br>
+                        Standard equation(Weierstrass):<br>
+                        <strong>y<sup>2</sup>=x<sup>3</sup>+ax+b</strong><br>
+                        <strong>4a<sup>3</sup>+27b<sup>2</sup>&ne;0</strong><br>
+                        <br>
+                        <a href="https://www.microsec.hu/en/pki-blog/mathematics-elliptic-curve-cryptography-ecc">Operatii</a><br>
+                        <br>
+                        Proprietati:<br>
+Element neutru: <strong>P + O = O + P = P</strong><br>
+Element inversabil: <strong>P + (−P) = O</strong><br>
+Asociativitate <strong>(P + Q) + R = P + (Q + R)</strong><br>
+Comutativitate: <strong>P + Q = Q + P</strong><br>
+<br>                   
+                    </p>
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">2. Point negation</p>
+                    <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                        Elliptic curves, F<sub>p</sub> field<br>
+                        <strong>E(F<sub>p</sub>) = { (x, y) : x, y &in; F<sub>p</sub> satisfying
+  y<sup>2</sup> = x<sup>3</sup> + a x + b } &cup; O</strong><br>
+<br>                   <a href="https://curves.xargs.org/">Visualizing Elliptic Curve Cryptography</a>
+                    </p>
+
+                    <p class="notebook-p coming-soon-regular"><br>
+                    For all the challenges in the starter set, we will be working with the elliptic curve<br><br>
+E: Y<sup>2</sup> = X<sup>3</sup> + 497X + 1768 mod 9739<br><br>
+Using the above curve, and the point P(8045, 6936), find the point Q(x, y) such that<br>
+P + Q = O
+                    </p>
+
+
+                    <p class="notebook-p coming-soon-regular"><br>
+P + Q = O => P = -Q => -Q = (X<sub>P</sub>,-Y<sub>P</sub>) = (8045,-6936)mod 9739 = (8045, 2803)
+                    </p>
+
+                </div>
+
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">3. Point Addition</p>
+                    <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                        <strong>Algorithm for the addition of two points: P + Q<br><br></strong>
+(a) If P = O, then P + Q = Q.<br>
+(b) Otherwise, if Q = O, then P + Q = P.<br>
+(c) Otherwise, write P = (x&#8321;, y&#8321;) and Q = (x&#8322;, y&#8322;).<br>
+(d) If x&#8321; = x&#8322; and y&#8321; = &minus;y&#8322;, then P + Q = O.<br>
+(e) Otherwise:<br>
+&nbsp;&nbsp;&nbsp;(e1) If P &ne; Q: &lambda; = (y&#8322; &minus; y&#8321;) / (x&#8322; &minus; x&#8321;)<br>
+&nbsp;&nbsp;&nbsp;(e2) If P = Q: &lambda; = (3x&#8321;&sup2; + a) / (2y&#8321;)<br>
+(f) x&#8323; = &lambda;&sup2; &minus; x&#8321; &minus; x&#8322;<br>
+(h) y&#8323; = &lambda;(x&#8321; &minus; x&#8323;) &minus; y&#8321;<br>
+(i) P + Q = (x&#8323;, y&#8323;)<br>
+                    </p>
+
+
+                    <p class="notebook-p coming-soon-regular">
+Using the above curve, and the points<br>
+P = (493, 5564), Q = (1539, 4742), R = (4403, 5202)<br>
+find the point S(x, y) = P + P + Q + R by implementing the above algorithm.<br>
+<br>
+                    </p>
+
+                    <code class="notebook-p coming-soon-regular">
+O = (0, 0)
+def add_points(P, Q, a, mod):
+    if P == O:
+        return Q
+    if Q == O:
+        return P
+    
+    if P[0] == Q[0] and (P[1] + Q[1]) % mod == 0:
+        return O
+
+    if P != Q:
+        y2_y1 = (Q[1] - P[1]) % mod
+        x2_x1 = (Q[0] - P[0]) % mod
+        lam = (y2_y1 * pow(x2_x1, -1, mod)) % mod
+    else:
+        if P[1] % mod == 0:
+            return O
+        num = (3 * P[0] * P[0] + a) % mod    
+        den = pow((2 * P[1]) % mod, -1, mod)  
+        lam = (num * den) % mod
+
+    x3 = (lam * lam - P[0] - Q[0]) % mod
+    y3 = (lam * (P[0] - x3) - P[1]) % mod
+    return (x3, y3)
+
+
+a = 497
+mod = 9739
+
+X=(5274,2841) 
+Y=(8669,740)
+
+X_Y=(1024,4440)
+X_X=(7284,2107)
+
+assert add_points(X, X, a, mod) == X_X
+assert add_points(X, Y, a, mod) == X_Y
+
+
+P=(493,5564)
+Q=(1539,4742)
+R=(4403,5202)
+
+P_P = add_points(P, P, a, mod)
+P_P_Q = add_points(P_P, Q, a, mod)
+P_P_Q_R = add_points(P_P_Q, R, a, mod)
+
+print(f"Crypto{{{P_P_Q_R[0]},{P_P_Q_R[1]}}}")
+                    </code>
+
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+
+
+
+                <div class="row">
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">4. Scalar Multiplication</p>
+                    <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                        <strong>Double and Add algorithm for the scalar multiplication<<br><br></strong>
+
+Input: P &isin; E(F<sub>p</sub>) and an integer n &gt; 0<br>
+Output: Q = [n]P &isin; E(F<sub>p</sub>)<br><br>
+
+1. Set Q = P and R = O.<br>
+2. Loop while n &gt; 0.<br>
+&nbsp;&nbsp;3. If n &equiv; 1 mod 2, set R = R + Q.<br>
+&nbsp;&nbsp;4. Set Q = [2]Q and n = &lfloor;n / 2&rfloor;.<br>
+&nbsp;&nbsp;5. If n &gt; 0, continue with loop at Step 2.<br>
+6. Return the point R, which equals [n]P.<br>
+                    </p>
+
+
+                    <p class="notebook-p coming-soon-regular">
+                        <br>
+Using the above curve, and the point<br>
+P = (2339, 2213),<br>
+find the point Q(x, y) = [7863]P by implementing the above algorithm.
+<br><br>
+                    </p>
+
+                    <code class="notebook-p coming-soon-regular">
+def scalar_multiplication(P, n, a, mod):
+    Q = P
+    R = O
+    while n > 0:
+        if n % 2 == 1:
+            R = add_points(R,Q, a, mod)
+        Q = add_points(Q, Q, a, mod)
+        n = n // 2
+    return R
+
+X = (5323,5438)
+X_1337 = (1089,6931)
+assert scalar_multiplication(X, 1337, a, mod) == X_1337
+
+P=(2339,2213)
+n = 7863
+nP = scalar_multiplication(P, n, a, mod)
+print(f"Crypto{{{nP[0]},{nP[1]}}}")
+                    </code>
+
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+
+
+                <div class="row">
+                <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">5. Curves and Logs</p>
+
+
+                    <p class="notebook-p coming-soon-regular">
+                        <br>
+Using the curve, prime and generator:<br><br>
+E: Y<sup>2</sup> = X<sup>3</sup> + 497X + 1768 mod 9739, G: (1804, 5368)<br><br>
+Calculate the shared secret after Alice sends you Q<sub>A</sub> = (815, 3190), with your secret integer n<sub>B</sub> = 1829.<br><br>
+Generate a key by calculating the SHA1 hash of the x coordinate (take the integer representation of the coordinate and cast it to a string). The flag is the hexdigest you find.<br>
+
+<br><br>
+                    </p>
+
+
+                    <p class="notebook-p coming-soon-regular">python</p>
+                    <code class="notebook-p coming-soon-regular">
+import hashlib
+
+a = 497
+b = 1768
+
+p = 9739
+G = (1804, 5368)
+
+QA=(815,3190)
+nB = 1829
+
+res = scalar_multiplication(QA, nB, a, p)
+x = res[0]
+
+shared = hashlib.sha1(str(x).encode()).hexdigest()
+print(shared)
+                    </code>
+
+                    <p class="notebook-p coming-soon-regular">sage</p>
+                    <code class="notebook-p coming-soon-regular">
+sage: E = EllipticCurve(GF(9739),[497,1768])
+sage: QA = E(815, 3190)
+sage: nB = 1829
+sage: QA*nB 
+(7929 : 707 : 1) 
+                    </code>
+
+                    <p class="notebook-p coming-soon-regular"><br></p>
+                </div>
+
+
+
+            <div class="row">
+                <p class="notebook-p coming-soon-regular"><br></p>
+                <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">6. Efficient Exchange</p>
+
+
+                <p class="notebook-p coming-soon-regular">
+                        <br>
+Calculate the shared secret after Alice sends you
+x(Q_A) = 4726, with your secret integer n_B = 6534.
+<br><br>
+                </p>
+                <code class="notebook-p coming-soon-regular">
+sage: xQA = 4726
+sage: QA = E.lift_x(xQA).xy()
+sage: EQA = E(QA)
+sage: nb = 6534
+sage: EQA * nb
+(1791 : 7558 : 1)                                                                                 
+                </code>
+
+                <p class="notebook-p coming-soon-regular"><br></p>
+            </div>
+
+
+
+            <div class="row">
+                <p class="notebook-p coming-soon-regular"><br></p>
+                <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">7. Montgomery's Ladder</p>
+
+                <p class="notebook-p coming-soon-regular">
+                        <br>
+We will work with the following elliptic curve:<br><br>
+E: Y<sup>2</sup> = X<sup>3</sup> + 486662X<sup>2</sup> + X mod 2<sup>255</sup> &minus; 19<br><br>
+Using the above curve, and the generator point with G.x = 9, find the x-coordinate (decimal representation) of point Q = [0x1337c0decafe] G by implementing the above algorithm.<br>
+<br><br>
+                </p>
+
+
+                <p class="notebook-p coming-soon-regular">
+                    <strong>Helper functions:</strong><br>
+                    <br>
+                </p>
+
+
+
+
+                <p class="notebook-p coming-soon-regular">
+                    Addition formula for Montgomery Curve (Affine):
+                    <br>
+                </p>
+                <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+Input: P, Q &isin; E(F<sub>p</sub>) with P &ne; Q<br>
+Output: R = (P + Q) &isin; E(F<sub>p</sub>)<br><br>
+
+(x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>) = P, Q<br>
+&alpha; = (y<sub>2</sub> &minus; y<sub>1</sub>) / (x<sub>2</sub> &minus; x<sub>1</sub>)<br>
+x<sub>3</sub> = B&alpha;<sup>2</sup> &minus; A &minus; x<sub>1</sub> &minus; x<sub>2</sub><br>
+y<sub>3</sub> = &alpha;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub><br>
+R = (x<sub>3</sub>, y<sub>3</sub>)<br>
+                </p>
+                <code class="notebook-p coming-soon-regular">
+def montgomery_add(P, Q, mod, A, B):
+    y2_y1 = (Q[1] - P[1]) % mod
+    x2_x1 = (Q[0] - P[0]) % mod
+    alpha = (y2_y1 * pow(x2_x1, -1, mod)) % mod
+    x3 = B * pow(alpha,2, mod) - A - P[0] - Q[0]
+    y3 = alpha * (P[0] - x3) - P[1]
+    return(x3 % mod, y3 % mod)                                                                               
+                </code>
+
+
+                <p class="notebook-p coming-soon-regular">
+                    <br>
+                        Doubling formula for Montgomery Curve (Affine)
+                        <br>
+                </p>
+                <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+    Input: P &isin; E(F<sub>p</sub>)<br>
+    Output: R = [2]P &isin; E(F<sub>p</sub>)<br><br>
+
+    (x<sub>1</sub>, y<sub>1</sub>) = P<br>
+    &alpha; = (3x<sub>1</sub>&sup2; + 2A x<sub>1</sub> + 1) / (2B y<sub>1</sub>)<br>
+    x<sub>3</sub> = B&alpha;&sup2; &minus; A &minus; 2x<sub>1</sub><br>
+    y<sub>3</sub> = &alpha;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub><br>
+    R = (x<sub>3</sub>, y<sub>3</sub>)<br>
+                </p>
+                <code class="notebook-p coming-soon-regular">
+def montgomery_double(P, mod, A, B):
+    num = (3 * pow(P[0],2, mod) + 2 * A * P[0] + 1) % mod
+    den = pow(2 * B * P[1], -1, mod)
+    alpha = (num * den) % mod
+    x3 = B * pow(alpha, 2, mod) - A - 2 * P[0]
+    y3 = alpha * (P[0] - x3) - P[1]
+    return (x3 % mod, y3 % mod)                       
+                </code>
+
+
+                <p class="notebook-p coming-soon-regular">
+                    <br>
+                        Montgomery’s binary algorithm in the group E(F<sub>p</sub>)
+                        <br>
+                </p>
+                <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+    Input: P &isin; E(F<sub>p</sub>) and an n-bit integer k = &sum; 2<sup>i</sup>k<sub>i</sub> where k<sub>n&minus;1</sub> = 1<br>
+    Output: [k]P &isin; E(F<sub>p</sub>)<br><br>
+
+    1. Set (R<sub>0</sub>, R<sub>1</sub>) to (P, [2]P)<br>
+    2. for i = n &minus; 2 down to 0 do<br>
+    3.&nbsp;&nbsp;&nbsp;If k<sub>i</sub> = 0 then<br>
+    4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set (R<sub>0</sub>, R<sub>1</sub>) to ([2]R<sub>0</sub>, R<sub>0</sub> + R<sub>1</sub>)<br>
+    5.&nbsp;&nbsp;&nbsp;Else:<br>
+    6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set (R<sub>0</sub>, R<sub>1</sub>) to (R<sub>0</sub> + R<sub>1</sub>, [2]R<sub>1</sub>)<br>
+    7. Return R<sub>0</sub><br>
+
+                </p>
+                <code class="notebook-p coming-soon-regular">
+def montgomery_binary(P, k, mod, A, B):
+    R0, R1 = P, montgomery_double(P, mod, A, B)
+    n = k.bit_length()
+    for i in range(n-2 , -1, -1):
+        if (k >> i) & 1 == 0:
+            R0, R1 = montgomery_double(R0, mod, A, B), montgomery_add(R0, R1, mod, A, B)
+        else:
+            R0, R1 = montgomery_add(R0, R1, mod, A, B), montgomery_double(R1, mod, A, B)
+    return R0                                                  
+                </code>
+
+                <p class="notebook-p coming-soon-regular">
+                    <br><strong>Solve:</strong><br>
+                    sage
+                </p>
+                <code class="notebook-p coming-soon-regular">
+p  = 2^255 - 19
+A  = 486662
+xG = 9
+k  = 0x1337c0decafe
+
+#y^2 = x^3 + A*x^2 + x  over F_p
+F = GF(p)
+E = EllipticCurve(F, [0, A, 0, 1, 0])   # a1=0, a2=A, a3=0, a4=1, a6=0
+
+rhs = x^3 + A*x^2 + x
+y  = rhs.sqrt()           
+
+G = E(x, y)              
+
+Q  = k * G
+xQ = Q.xy()[0]
+xQ                                                                              
+                </code>
+                <p class="notebook-p coming-soon-regular">
+                    python
+                </p>
+                <code class="notebook-p coming-soon-regular">
+from tonellishanks import tonellishanks
+
+mod = pow(2,255) - 19
+p = mod
+B = 1
+A = 486662
+xG = 9
+
+yG = (pow(xG, 3, p) + (A % p) * pow(xG, 2, p) + xG) % p  # y^2 = rhs
+yG  = tonellishanks(yG, p)
+G = (xG % p, yG % p)
+Q = montgomery_binary(G, 0x1337c0decafe, mod, A, B)
+
+print(Q)                                                                     
+                </code>
+
+                <p class="notebook-p coming-soon-regular"><br></p>
+            </div>
+
+
+
+            <div class="row">
+                <p class="notebook-p coming-soon-regular fw-bold underline">
+                    <br>
+                    8. Smooth Criminal
+                </p>
+                <p class="notebook-p coming-soon-regular">
+                    Spent my morning reading up on ECC and now I'm ready to start encrypting my messages. Sent a flag to Bob today, but you'll never read it.<br>
+                    <a href="https://cryptohack.org/static/challenges/source_ba064d03b53a5fd7321dd0007b72906b.py">source.py</a><br>
+                    <a href="https://cryptohack.org/static/challenges/output_6cf0cf5ca7ab93bb829e557dd77e08ff.txt">output.txt</a>
+                </p>
+
+                <p class="notebook-p coming-soon-regular">
+                    <br>
+                    <a href="https://github.com/elikaski/ECC_Attacks?tab=readme-ov-file#The-order-of-the-generator-is-too-small">Order of generator is too small</a><br>
+                </p>
+                
+                <code class="notebook-p coming-soon-regular">
+                    
+p  = 310717010502520989590157367261876774703
+a  = 2
+b  = 3
+
+g_x = 179210853392303317793440285562762725654
+g_y = 105268671499942631758568591033409611165
+
+b_x = 272640099140026426377756188075937988094
+b_y = 51062462309521034358726608268084433317
+
+A_x = 280810182131414898730378982766101210916
+A_y = 291506490768054478159835604632710368904
+
+F = GF(p)
+E = EllipticCurve(F, [a, b])
+
+G = E(g_x, g_y)
+B = E(b_x, b_y)
+A = E(A_x, A_y)
+
+
+k = (A).log(G) 
+k
+                </code>
+            </div>
+
+
+
+            <div class="row">
+                <p class="notebook-p coming-soon-regular fw-bold underline"><br>9. Curveball</p>
+                <p class="notebook-p coming-soon-regular">
+                    Here's my secure search engine, which will only search for hosts it has in its trusted certificate cache.<br>
+                    <a href="https://cryptohack.org/static/challenges/13382_edfe1f04767ab6d72d689fc13a002dcc.py">13382.py</a><br><br>
+                </p>
+                <p class="notebook-p coming-soon-regular">
+                    Codul primit verifica daca certificatul primit(cheie privata, host, curba, generator) exista si este valid. Daca acesta nu exista este adaugat in lista, iar daca exista este verificat. <br><br>
+
+                    Verificarea se face face in functia
+                    <code class="notebook-p coming-soon-regular">
+def sign_point(self, g, d):
+    return g * d</code><br>
+                    Rezultatul este comparat cu o cheie publica existenta.<br>
+                    Pentru a exploata acest lucru trebuie obtinuta aceeasi cheie publica in urma inmultirii generatorului cu cheia privata. Valoarea 1 pentru cheia privata nu este permisa.<br>
+                    O rezolvare posibila este setarea cheii private ca fiind o valoare k<sup>-1</sup> mod n(ordinul grupului) si generatorul fiind cheia publica dorita inmultita cu k.<br><br>
+                    pb - cheie publica <br>
+                    k - valoarea aleasa<br>
+                    <strong>k<sup>-1</sup> * pb * k = pb</strong>
+                    <br><br>
+                </p>
+                <a  class="notebook-p coming-soon-regular" href="https://neuromancer.sk/std/nist/P-256">valoarea standard pentru n</a>
+                <p class="notebook-p coming-soon-regular">
+                    <br>
+                    k = 2<br>
+                    
+                </p>
+                <code class="coming-soon-regular notebook-p">inverse_mod(2,n)
+P = EC(x,y)
+2*P</code>
+                <p class="notebook-p coming-soon-regular"><br>Rezolvare:</p>
+                <code class="notebook-p coming-soon-regular">
+from pwn import *
+import json
+
+
+
+s = remote("134.122.111.232", 13382)
+res = s.recvline()
+print(res)
+
+x_2, y_2 = 41356219197037336402569455855811057698565586129318592577359663831246482999742, 46303690855896669118039560713730632567800729889406997568787293237676888679144
+
+choice = {"private_key":57896044605178124381348723474703786764998477612067880171211129530534256022185, "host":"", "curve":"secp256r1","generator":(x_2,y_2)}
+choice_json = json.dumps(choice)
+choice_bytes = choice_json.encode()
+s.sendline(choice_bytes)
+
+
+res = s.recvline()
+print(res)
+                </code>
+                <p class="notebook-p coming-soon-regular"><br><br></p>
+            </div>
+
+
+            <div class="row">
+                <p class="notebook-p coming-soon-regular fw-bold underline"><br>10. ProSign3</p>
+                <p class="notebook-p coming-soon-regular">
+                    This is my secure timestamp signing server. Only if you can produce a signature for "unlock" can you learn more.<br>
+
+                    <a href="https://cryptohack.org/static/challenges/13381_7fd5a5da326879dc4a3995cad969a165.py">13381.py</a>
+                </p>
+                <p class="notebook-p coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <strong>Signing</strong><br>
+EC equation, <span style="color:blue;">G</span> fixed<br>
+<span style="color:darkgreen;">d<sub>B</sub></span><span style="color:blue;">G</span> -> Bob's private key <br>
+P<sub style="color:darkgreen;">B</sub> = <span style="color:darkgreen;">d<sub>B</sub></span> -> Bob's public key<br><br>
+<span style="color:purple;">m</span> -> message<br>
+<span style="color:orange;">z</span> -> hash(message)<br>
+<br>
+<span style="color:brown;">n</span> -> order of generator <span style="color:blue;">G</span><br>
+<br>
+<span style="color:red;">k</span> ∈ [1, n - 1] chosen randomly by Bob<br>
+<span style="color:red;">k</span><span style="color:blue;">G</span> is computed, kg = (x1,y1)<br>
+<span style="color:teal;">r</span> = x1 (mod n)<br>
+<span style="color:maroon;">s</span> = <span style="color:red;">k</span><sup>-1</sup>(<span style="color:orange;">z</span> + <span style="color:teal;">r</span><span style="color:darkgreen;">d<sub>B</sub></span>)<br>
+<br>
+signature = (<span style="color:teal;">r</span>, <span style="color:maroon;">s</span>)<br>
+<br>
+
+<strong>Verification</strong><br>
+u<sub>1</sub> = <span style="color:orange;">z</span><span style="color:maroon;">s</span><sup>-1</sup> mod n<br>
+u<sub>2</sub> = <span style="color:teal;">r</span><span style="color:maroon;">s</span><sup>-1</sup> mod n<br>
+<br>
+u<sub>1</sub><span style="color:blue;">G</span> + u<sub>2</sub>P<sub style="color:darkgreen;">B</sub> = (x1, y1)<br>
+valid signature: <span style="color:teal;">r</span> ≡ x1<br>
+<br>
+
+u<sub>1</sub><span style="color:blue;">G</span> + u<sub>2</sub>P<sub style="color:darkgreen;">B</sub> 
+= <span style="color:orange;">z</span>&nbsp;<span style="color:maroon;">s</span><sup>&minus;1</sup><span style="color:blue;">G</span> + <span style="color:teal;">r</span>&nbsp;<span style="color:maroon;">s</span><sup>&minus;1</sup>P<sub style="color:darkgreen;">B</sub><br>
+= <span style="color:maroon;">s</span><sup>&minus;1</sup>(<span style="color:orange;">z</span><span style="color:blue;">G</span> + <span style="color:teal;">r</span>P<sub style="color:darkgreen;">B</sub>)<br>
+= <span style="color:maroon;">s</span><sup>&minus;1</sup>(<span style="color:orange;">z</span><span style="color:blue;">G</span> + <span style="color:teal;">r</span><span style="color:darkgreen;">d<sub>B</sub></span><span style="color:blue;">G</span>)<br>
+= <span style="color:maroon;">s</span><sup>&minus;1</sup>(<span style="color:orange;">z</span> + <span style="color:teal;">r</span><span style="color:darkgreen;">d<sub>B</sub></span>)<span style="color:blue;">G</span><br>
+= <span style="color:red;">k</span>(<span style="color:orange;">z</span> + <span style="color:teal;">r</span><span style="color:darkgreen;">d<sub>B</sub></span>)<sup>&minus;1</sup>(<span style="color:orange;">z</span> + <span style="color:teal;">r</span><span style="color:darkgreen;">d<sub>B</sub></span>)<span style="color:blue;">G</span><br>
+= <span style="color:red;">k</span><span style="color:blue;">G</span><br>
+                </p>
+
+                <p class="notebook-p coming-soon-regular">
+                    <br>
+                    Problema care apare in codul dat apare in functia:
+                </p>
+                <code class="notebook-p coming-soon-regular">
+def sign_time(self):
+        now = datetime.now()
+        m, n = int(now.strftime("%m")), int(now.strftime("%S"))
+        current = f"{m}:{n}"
+        msg = f"Current time is {current}"
+        hsh = self.sha1(msg.encode())
+        sig = self.privkey.sign(bytes_to_long(hsh), randrange(1, n))
+        return {"msg": msg, "r": hex(sig.r), "s": hex(sig.s)}
+                </code>
+                <p class="notebook-p coming-soon-regular">
+                    In <span class="highlight-yellow">self.privkey.sign(bytes_to_long(hsh), randrange(1, n))</span> k-ul este ales aleatoriu in intervalul 1, n. Cum acesta depinde de timp, daca request-ul este trimis la momentul potrivit poate fi fortat sa ia valoarea 1.<br><br>
+
+                    Daca valoarea k-ului este 1:<br>
+                    kG = 1G = G =><br>
+                    r = xG mod n<br><br>
+                    s = 1<sup>-1</sup>(z + r*dB) = <br>
+                    = z + xG*dB<br><br>
+                    
+                    dB = (s - z) * xG<sup>-1</sup><br><br>
+
+                    Rezolvare:
+                </p>
+
+
+                <code class="notebook-p coming-soon-regular">
+from pwn import *
+import json
+import time
+from datetime import datetime
+import hashlib
+from Crypto.Util.number import bytes_to_long, long_to_bytes
+
+def sha1(data):
+    sha1_hash = hashlib.sha1()
+    sha1_hash.update(data)
+    return sha1_hash.digest()
+
+
+def wait_until(second):
+    n = -1
+    while n != second:
+        time.sleep(1)
+        now = datetime.now()
+        m, n = int(now.strftime("%m")), int(now.strftime("%S"))
+        print(f"Second:{n}")
+
+
+sock = remote("socket.cryptohack.org", 13381)
+res = sock.recvuntil(b"or verify.\n")
+
+choice = {"option":"sign_time"}
+choice_json = json.dumps(choice)
+choice_bytes = choice_json.encode()
+
+
+wait_until(3)
+sock.sendline(choice_bytes) 
+signed = sock.recvline().decode()
+signed_json = json.loads(signed)
+
+for_2 = signed_json
+n = 0xffffffffffffffffffffffff99def836146bc9b1b4d22831
+
+
+# daca k = 1
+# s = z + rdB
+s = sha1(for_2["msg"].encode())
+long_s = bytes_to_long(s) # z
+print(f"s: {long_s}")
+
+r = int(for_2["r"],16)
+s = int(for_2['s'], 16)
+
+dB = (s - long_s) % n
+dB = (pow(r, -1, n) * dB) % n
+
+print(f"private key: {dB}")
+
+
+import hashlib, ecdsa, ecdsa.util
+
+def sign_with_recovered_d(d: int, msg: str):
+    sk = ecdsa.SigningKey.from_secret_exponent(d, curve=ecdsa.NIST192p, hashfunc=hashlib.sha1)
+    digest = hashlib.sha1(msg.encode()).digest()
+    sig = sk.sign_digest(digest, sigencode=ecdsa.util.sigencode_string)
+    r, s = ecdsa.util.sigdecode_string(sig, sk.privkey.order)
+    return hex(r), hex(s)
+
+
+my_r, my_s  = sign_with_recovered_d(dB, "unlock")
+
+
+choice = {"option":"verify", "r":my_r, "s":my_s,"msg":"unlock"}
+
+choice_json = json.dumps(choice)
+choice_bytes = choice_json.encode()
+sock.sendline(choice_bytes)
+response = sock.recvline()
+print(response)
+                </code>
+
+                <p class="notebook-p coming-soon-regular">
+                    Pentru functia wait_until(n), valoarea la care se primeste request-ul este n-1<br>
+                    Deci pentru wait_until(3), k apartine [1,2]<br>
+                    Pentru n = 2 apare o eroare.<br>
+                    Codul trebuie rulat pana cand k ia valoarea 1.<br><br><br>
+                </p>
+            </div>
+
+
+            
+
+            <div class="row">
+                <div class="notebook-p coming-soon-regular fw-bold underline">11. Moving Problems</div>
+                <div class="notebook-p coming-soon-regular">
+                    I've learnt that when life gives you lemons, if you look at things the right way they taste just like pairs.<br><br>
+                    <a href="https://cryptohack.org/static/challenges/source_d3b18de2c91f41f6e7431fb9854cf74f.sage">source.sage</a><br>
+                    <a href="https://cryptohack.org/static/challenges/output_6dc28a4d1223789dc760b8ce9235a667.txt">output.txt</a><br><br>
+                </div>
+
+                <a class="notebook-p coming-soon-regular" href="https://github.com/elikaski/ECC_Attacks?tab=readme-ov-file#the-curve-is-supersingular">MOV attack</a>
+                <code class="notebook-p coming-soon-regular">
+Gn = G.order()
+k = 1
+while p^k % Gn != 1:
+    k += 1
+
+
+Ek = EllipticCurve(GF(p^k), [a,b])
+Gk = Ek(G)
+Qk = Ek(P1)
+Rk = Ek.random_point()
+
+
+
+m = Rk.order()
+d = gcd(m, Gn)
+Tk = (m // d) * Rk
+assert Tk.order() == d
+assert (Gn * Tk).is_zero()
+
+g = Gk.weil_pairing(Tk, Gn)
+q = Qk.weil_pairing(Tk, Gn)
+
+
+key = q.log(g)
+
+shared = key * P2
+shared
+                </code>
+            </div>
+<!-- CONTENT FINISH -->
