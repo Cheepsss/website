@@ -1,11 +1,11 @@
 CryptoHack2
 
-                <!-- CONTENT START -->
+<!-- CONTENT START -->
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Greatest Common Divisor</p>
-                    <p class="notebook-p coming-soon-regular" >calculate gcd(a,b)</p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Greatest Common Divisor</p>
+                    <p  >calculate gcd(a,b)</p>
+                    <code class="dotted">
 def euclid(a,b):
     if b == 0:
         return a
@@ -15,15 +15,15 @@ b=52920
 
 print(euclid(a,b))
                     </code>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Extended GCD</p>
-                    <p class="notebook-p coming-soon-regular" >Using the two primes p=26513,q=32321 find the integers u,v such that p⋅u+q⋅v=gcd(p,q)<br>
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Extended GCD</p>
+                    <p  >Using the two primes p=26513,q=32321 find the integers u,v such that p⋅u+q⋅v=gcd(p,q)<br>
 Enter whichever of u and v is the lower number as the flag.</p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 def gcdExtended(a, b): 
     if a == 0 : 
         return b,0,1
@@ -35,46 +35,46 @@ def gcdExtended(a, b):
 
 print(gcdExtended(26513,32321))
                     </code>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Arithmetic</p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Modular Arithmetic</p>
+                    <p  >
                         Calculate the following integers:<br>
                         11 ≡ x mod6<br>
                         8146798528947 ≡ y mod17<br>
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 print(8146798528947 % 17)
                     </code>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Arithmetic 2</p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Modular Arithmetic 2</p>
+                    <p  >
                         Now take the prime p = 65537. Calculate 27324678765465536 mod 65537.
                     </p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p  >
                         <br>
                         Mica teorema a lui Fermat:
                         <strong class="highlight-green">a<sup>p − 1</sup> ≡ 1 (mod p)</strong>
                         <br>
                         => raspunsul este 1
                     </p>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Inverting</p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Modular Inverting</p>
+                    <p  >
                        What is the inverse element: d = 3⁻¹ such that 3 · d ≡ 1 mod 13?
                     </p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p  >
                         <br>
                         Folosim teorema de mai devreme:<br>
                         <strong>a<sup>p − 1</sup> ≡ 1 (mod p)</strong><br>
@@ -85,18 +85,18 @@ print(8146798528947 % 17)
                         Inlocuind pentru <strong> 3 · d ≡ 1 (mod 13)</strong> avem <strong>3<sup>13 − 2</sup> · 3 ≡ 1 (mod 13)</strong><br>
                         =>rezultatul este <strong>3<sup>11</sup>(mod 13)</strong>
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">print(pow(3, 13-2, 13))</code>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <code class="dotted">print(pow(3, 13-2, 13))</code>
+                    <p ><br></p>
                 </div>
 
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Quadratic Residues</p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Quadratic Residues</p>
+                    <p  >
                        What is the inverse element: d = 3⁻¹ such that 3 · d ≡ 1 mod 13?
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 import math
 
 check = [11,6,14]
@@ -106,17 +106,17 @@ for i in range(10):
         if r == int(r):
             print(c, r)
                     </code>
-                    <p class="notebook-p coming-soon-regular font-red" style="font-size: 0.6em;">*nu e o versiune eficienta</p>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p class="font-red" style="font-size: 0.6em;">*nu e o versiune eficienta</p>
+                    <p ><br></p>
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Legendre Symbol</p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Legendre Symbol</p>
+                    <p  >
                        Given the following 1024 bit prime and 10 integers, find the quadratic residue and then calculate its square root; the square root is your flag. Of the two possible roots, submit the larger one as your answer.
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 p = ...
 ints = [...]
 a = 0
@@ -127,8 +127,8 @@ for i in ints:
 
 print(pow(a,(p+1)//4,p))
                     </code>
-                    <p class="notebook-p coming-soon-regular">
-                        <code class="notebook-p coming-soon-regular dotted">pow(i,(p-1)//2,p)</code> - Legendre Symbol 
+                    <p >
+                        <code class="dotted">pow(i,(p-1)//2,p)</code> - Legendre Symbol 
                         <br>
                         <br>
                         Pentru a 2-a parte vom folosi faptul ca <br><strong>a<sup>(p−1)/2</sup> ≡ 1 </strong> <=> <span class="fw-bold font-red">/ · a</span><br>
@@ -151,35 +151,35 @@ print(pow(a,(p+1)//4,p))
                         Intr-un final putem aplica radicalul asupra
                         <strong>a<sup>(p+1)/2</sup> ≡ a </strong><=> <span class="fw-bold font-red">/√</span><br>
                         <strong>a<sup>(p+1)/4</sup> ≡ a <sup>1/2</sup></strong> <=> <br>
-                        <code class="notebook-p coming-soon-regular dotted">pow(i,(p+1)//4,p)</code>
+                        <code class="dotted">pow(i,(p+1)//4,p)</code>
                     </p>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Square Root</p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Modular Square Root</p>
+                    <p  >
                         In SageMath:
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 from sympy.ntheory.residue_ntheory import nthroot_mod
 nthroot_mod(int(a),2,int(p),all_roots=True)
                     </code>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Chinese Remainder Theorem</p>
-                    <p class="notebook-p coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Chinese Remainder Theorem</p>
+                    <p  >
                        Given the following set of linear congruences:<br>
                        x ≡ 2 (mod 5)<br>
                        x ≡ 3 (mod 11)<br>
                        x ≡ 5 (mod 17)<br>
                        Find the integer <span class="fw-bold">a</span> such that <span class="fw-bold">x ≡ a (mod 935)</span><br><br>
                     </p>
-                    <p class="notebook-p coming-soon-regular dotted" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p class="dotted post-it">
                         <span class="fw-bold highlight-green">Chinese Remainder Theorem</span> <br>
                         Let  <strong>m1,m2,…,mk</strong> be natural numbers such that each is greater than 1, and every pair of them is relatively prime.<br>
                         Let <strong>a1,a2,…,ak</strong> be integers.<br>
@@ -194,7 +194,7 @@ nthroot_mod(int(a),2,int(p),all_roots=True)
                         </strong>
                         has a unique solution mod <strong>M</strong>, where <strong>M=m<sub>1</sub>m<sub>2</sub>⋯m<sub>k</sub></strong>
                     </p>
-                    <p class="notebook-p coming-soon-regular">
+                    <p >
                         <br>
                         <strong>Notatii:</strong><br>
                         <strong>M = m<sub>1</sub>·m<sub>2</sub>...m<sub>k</sub>​</strong><br>
@@ -204,7 +204,7 @@ nthroot_mod(int(a),2,int(p),all_roots=True)
                         Solutia este data de <strong>x = ∑<sub>1</sub><sup>k</sup> a<sub>i</sub> · M<sub>i</sub> · y<sub>i</sub></strong><br>
 
                     </p>
-                    <p class="notebook-p coming-soon-regular">
+                    <p >
                         <br>
                         <strong>Explicatie:</strong><br>
                         Pentru mine aceasta teorema nu a avut sens fara teorema izomorfismului de inele:<br>
@@ -220,7 +220,7 @@ nthroot_mod(int(a),2,int(p),all_roots=True)
                         <strong>ϕ<sup>−1</sup>(a,b) = x ≡ ∑<sub>1</sub><sup>k</sup> a<sub>i</sub> · M<sub>i</sub> · y<sub>i</sub></strong> care este solutia cautata <br>
                     </p>
 
-                    <p class="notebook-p coming-soon-regular">
+                    <p >
                         <br>
                         <strong>Rezolvare:</strong><br>
                         Clasica:<br>
@@ -238,18 +238,18 @@ nthroot_mod(int(a),2,int(p),all_roots=True)
                         <br>
                         In SageMath:
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 crt([2,3,5],[5,11,17])
                     </code>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                     
                 </div>
 
                 <div class="row">
-                    <p class="notebook-p coming-soon-regular"><br></p>
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Adrien's Signs</p>
-                    <p class="notebook-p coming-soon-regular" >Codul primit:</p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">Adrien's Signs</p>
+                    <p  >Codul primit:</p>
+                    <code class="dotted">
 def encrypt_flag(flag):
     ciphertext = []
     plaintext = ''.join([bin(i)[2:].zfill(8) for i in flag])
@@ -263,16 +263,19 @@ def encrypt_flag(flag):
             ciphertext.append(n)
     return ciphertext
                     </code>
-                    <p class="notebook-p coming-soon-regular dotted" style="background-color: rgba(151, 240, 42, 0.13);">
-                    <strong class="underline highlight-green">Legendre symbol</strong><br>
-                    <strong>(a / p) = 0</strong> if a ≡ 0 mod p<br>
-                    <strong>(a / p) = 1</strong> if a is a quadratic residue mod p<br>
-                    <strong>(a / p) = -1</strong> if a is a non-quadratic residue mod p<br><br>
-                    <strong class="underline highlight-green">Euler criterion</strong><br>
-                    For an odd prime p and an integer a not divisible by p:<br>
-                    <strong>(a / p) ≡ a<sup>(p - 1) / 2</sup> mod p</strong>
+                    <p><br></p>
+                    <p class="dotted post-it" >
+                        <br>
+                        <strong class="underline highlight-green">Legendre symbol</strong><br>
+                        <strong>(a / p) = 0</strong> if a ≡ 0 mod p<br>
+                        <strong>(a / p) = 1</strong> if a is a quadratic residue mod p<br>
+                        <strong>(a / p) = -1</strong> if a is a non-quadratic residue mod p<br><br>
+                        <strong class="underline highlight-green">Euler criterion</strong><br>
+                        For an odd prime p and an integer a not divisible by p:<br>
+                        <strong>(a / p) ≡ a<sup>(p - 1) / 2</sup> mod p</strong>
+                        <br><br>
                     </p>
-                    <p class="notebook-p coming-soon-regular">
+                    <p >
                         <br>
                         Explicatie:<br>
                         Cand bitul este 1, se adauga n la cifru<br>
@@ -282,7 +285,7 @@ def encrypt_flag(flag):
                         -n nu este quadratic residue si putem verifica folosind criteriul lui Euler
 
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 def decrypt(ciphertext, p):
     bits = []
     for c in ciphertext:
@@ -301,32 +304,33 @@ def decrypt(ciphertext, p):
     
     return f_bytes.decode()
                     </code>
-                    <p class="notebook-p coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
                 
 
                 <div class="row" style="flex-direction: column;">
-                    <p class="notebook-p coming-soon-regular fw-bold underline" style="font-size:1rem;">Modular Binomials</p>
-                    <p class="notebook-p coming-soon-regular">
+                    <p class="fw-bold underline" style="font-size:1rem;">Modular Binomials</p>
+                    <p >
                         Rearrange the following equations to get the primes p,q<br><br>
                         N = p × q<br>
                         c<sub>1</sub> = (2 × p + 3 × q)<sup>e₁</sup> mod N<br>
                         c<sub>2</sub> = (5 × p + 7 × q)<sup>e₂</sup> mod N
 
                     </p>
-                    <p class="notebook-p coming-soon-regular dotted " style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p class="dotted post-it">
+                        <br>
                     <strong class="underline highlight-green">Combinari de n luate cate k</strong><br>
                     <strong>C(n, k) = n! / (k! * (n - k)!)</strong><br>
                     <strong class="underline highlight-green">Binomul lui Newton</strong><br>
                         (a + b)<sup>n</sup> = 
   &sum;<sub>k=0</sub><sup>n</sup> (C
-  <sup>n</sup><sub>k</sub>) &middot; a<sup>n - k</sup> &middot; b<sup>k</sup><br>
+  <sup>n</sup><sub>k</sub>) &middot; a<sup>n - k</sup> &middot; b<sup>k</sup><br><br>
                     </p>
-                    <p class=" notebook-p coming-soon-regular">
+                    <p>
                         <br>
                         Solutie:
                     </p>
-                    <code class="notebook-p coming-soon-regular dotted">
+                    <code class="dotted">
 N =... e1 =... e2 =... c1 =... c2 =...
 
 a1 = 2 b1 = 3 a2 = 5 b2 = 7
@@ -359,8 +363,8 @@ print("p =", p)
 print("q =", q)
 
                     </code>
-                    
-                    <p class=" notebook-p coming-soon-regular btn-link notebook-p p-0" data-bs-toggle="collapse" data-bs-target="#collapseDemo" aria-expanded="true" aria-controls="collapseDemo">
+                    <p><br></p>
+                    <p class=" btn-link notebook-p p-0" data-bs-toggle="collapse" data-bs-target="#collapseDemo" aria-expanded="true" aria-controls="collapseDemo">
                         Explicatii formule ->
                     </p>
                     <div id="accordion" class="p-0">
@@ -372,3 +376,5 @@ print("q =", q)
                 
                 
 
+
+                <!-- CONTENT FINISH -->

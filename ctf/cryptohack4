@@ -1,29 +1,29 @@
 CryptoHack4
 <!-- CONTENT START -->
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                     <h1><div>Public-Key Cryptography</div></h1>
-                    <a class=" coming-soon-regular" href="https://leimao.github.io/article/RSA-Algorithm/">RSA</a>
+                    <a  href="https://leimao.github.io/article/RSA-Algorithm/">RSA</a>
                 </div>
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">1. Modular Exponentiation</p>
-                    <p class=" coming-soon-regular" >To grab the flag, find the solution to 101<sup>17</sup> mod 22663</p>
-                    <code class=" coming-soon-regular dotted">
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">1. Modular Exponentiation</p>
+                    <p  >To grab the flag, find the solution to 101<sup>17</sup> mod 22663</p>
+                    <code class="dotted">
 print(pow(101,17,22663))
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">2. Public Keys</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">2. Public Keys</p>
+                    <p  >
                         Encrypt the number 12 using the exponent e = 65537 and the primes p = 17 and q = 23. What number do you get as the ciphertext?
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 p = 17
 q = 23
 
@@ -34,19 +34,19 @@ x = 12
 
 print(pow(x,e,N))
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">3. Euler's Totient</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">3. Euler's Totient</p>
+                    <p  >
                         What is Euler's totient ϕ(N)?
                     </p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);;">
+                    <p  class="dotted post-it">
                         <br>
                         🔑d≡e<sup>-1</sup>mod &phi;(N)
                         <br>
@@ -67,11 +67,12 @@ print(pow(x,e,N))
                         <br>
                         <br>
                     </p>
-                    <p class=" coming-soon-regular">
+                    <p >
+                        <br>
                         &phi;(N) = N × (1 - 1/N)= N - 1<br>
-                        => 🔑d≡e<sup>-1</sup>mod N-1
+                        => 🔑d≡e<sup>-1</sup>mod N-1<br><br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 p = 857504083339712752489993810777
 q = 1029224947942998075080348647219
 N = p * q
@@ -80,22 +81,22 @@ phi = (p-1)*(q-1)
 
 print(phi)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">4. Private Keys</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">4. Private Keys</p>
+                    <p  >
                         Given the two primes:<br>
 p = 857504083339712752489993810777<br>
 q = 1029224947942998075080348647219<br><br>
 
 and the exponent e = 65537, what is the private key d ≡ e⁻¹ mod ϕ(N)?<br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 p = ...
 q = ...
 
@@ -120,14 +121,14 @@ e_inv = modinv(e, phi)
 
 print(e_inv)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">5. RSA Decryption</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">5. RSA Decryption</p>
+                    <p  >
 I've encrypted a secret number for your eyes only using your public key parameters:<br><br>
 
 N = ...<br>
@@ -138,7 +139,7 @@ Use the private key that you found for these parameters in the previous challeng
 c = ...
                     </p>
 
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 N = ...
 e = 65537
 
@@ -148,24 +149,25 @@ key = ...
 
 print(pow(c,key,N))
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
             
             <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">6. RSA Signatures</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">6. RSA Signatures</p>
+                    <p  >
                         Sign the flag crypto{Immut4ble_m3ssag1ng} using your private key and the SHA256 hash function.
+                        <br><br>
                     </p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p class="post-it dotted">
                         <br>
                         Signature📜  = (hash(message))<sup>Private key 🔑</sup>
                         <br><br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from Crypto.Util.number import bytes_to_long
 import hashlib
 
@@ -179,32 +181,32 @@ d = ...
 
 print(pow(h_long,d,N))
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">7. Factoring</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">7. Factoring</p>
+                    <p  >
                         Factorise the 150-bit number ... into its two constituent primes. Give the smaller one as your answer.
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 sage: F = factor(510143758735509025530880200653196460532653147)
 sage: F
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">8. Monoprime</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">8. Monoprime</p>
+                    <p  >
                         Why is everyone so obsessed with multiplying two primes for RSA. Why not just use one?
                     </p>
-                    <a class=" coming-soon-regular" href="https://crypto.stackexchange.com/questions/5170/why-do-we-need-in-rsa-the-modulus-to-be-product-of-2-primes">Why 2 primes</a> 
-                    <code class=" coming-soon-regular dotted">
+                    <a  href="https://crypto.stackexchange.com/questions/5170/why-do-we-need-in-rsa-the-modulus-to-be-product-of-2-primes">Why 2 primes</a> 
+                    <code class="dotted">
 sage: phi = n-1
 sage: inv_e = inverse_mod(e,phi)
 sage: plain = pow(ct,inv_e,phi)
@@ -212,25 +214,25 @@ sage: plain
 sage: plain = pow(ct,inv_e,n)
 sage: plain
                     </code>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from Crypto.Util.number import long_to_bytes
 res = ...
 bytes_res = long_to_bytes(res)
 
 print(bytes_res)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
             <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">9. Manyprime</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">9. Manyprime</p>
+                    <p  >
                         Using one prime factor was definitely a bad idea so I'll try using over 30 instead.
                     </p>
-                    <a class=" coming-soon-regular" href="https://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/ecm.html">The Elliptic Curve Factorization Method</a> 
-                    <code class=" coming-soon-regular dotted">
+                    <a  href="https://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/ecm.html">The Elliptic Curve Factorization Method</a> 
+                    <code class="dotted">
 sage: f = ecm.factor(n)
 sage: phi = 1
 sage: for factor in f:
@@ -240,24 +242,24 @@ sage: e_inv = inverse_mod(e,phi)
 sage: plain = pow(ct,e_inv,n)
 sage: plain
                     </code>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from Crypto.Util.number import long_to_bytes
 plain = ...
 bytes_plain = long_to_bytes(plain)
 print(bytes_plain)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
             
             <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">9. Salty</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">9. Salty</p>
+                    <p  >
                         Smallest exponent should be fastest, right?<br>
                         Salty.py:
                     </p>
 
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 #!/usr/bin/env python3
 
 from Crypto.Util.number import getPrime, inverse, bytes_to_long, long_to_bytes
@@ -286,29 +288,29 @@ decrypted = long_to_bytes(pt)
 assert decrypted == flag
                     </code>
 
-                    <p class=" coming-soon-regular">
+                    <p >
                         <br>
                         Exponentul e = 1 => mesajul nu este encriptat
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from Crypto.Util.number import long_to_bytes
 plain = ct
 bytes_plain = long_to_bytes(plain)
 print(bytes_plain)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
             
 
         
             <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">11. Modulus Inutilis</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">11. Modulus Inutilis</p>
+                    <p  >
                         My primes should be more than large enough now!<br>
                         modulus_inutilis.py:
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 #!/usr/bin/env python3
 
 from Crypto.Util.number import getPrime, inverse, bytes_to_long, long_to_bytes
@@ -337,44 +339,45 @@ decrypted = long_to_bytes(pt)
 assert decrypted == flag
                     </code>
 
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 m, exact = Integer(ct).nth_root(3, truncate_mode=True)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
             <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">12. Working with Fields</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">12. Working with Fields</p>
+                    <p  >
                         Given the prime p = 991 and the element g = 209, find the inverse element d = g^-1 such that g * d mod 991 = 1.
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 sage: p = 991
 sage: g = 209
 sage: d = inverse_mod(209,p)
 sage: d
 569
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
             
                 
 
             <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">13. Generators of Groups</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">13. Generators of Groups</p>
+                    <p  >
                         For the finite field with p = 28151, find the smallest element g which is a primitive element of F<sub>p</sub>.
+                        <br><br>
                     </p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p class="post-it dotted">
                         <br>
                         x = g<sup>n</sup> mod p
                         <br>
                         O explicatie buna poate fi gasita la <br>
-                        <a class=" coming-soon-regular" href="https://crypto.stackexchange.com/questions/79561/all-generators-for-modulo-p">StackOverflow All Generators</a>
+                        <a  href="https://crypto.stackexchange.com/questions/79561/all-generators-for-modulo-p">StackOverflow All Generators</a>
                         <br>
                         Generatori modulo p (p - prim)<br>
                         {g1,g2,...,gp−1}modp={1,2,...,p−1}<br>
@@ -387,8 +390,8 @@ sage: d
                         Unde &ensp;q<sub>i</sub> | p-1<br>
                         <br>
                     </p>
-
-                    <code class=" coming-soon-regular dotted">
+                    <p><br></p>
+                    <code class="dotted">
 sage: p = 28151
 sage: f = ecm.factor(p-1)
 sage: f = set(x for x in f) #only unique values
@@ -410,53 +413,53 @@ sage: def get_generator(p, verify_power):
 ....:
 sage: get_generator(p,verify_power)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">13. Computing Public Values</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">13. Computing Public Values</p>
+                    <p  >
                         Calculate the value of g <sup>a</sup> mod p
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 pow(g,a,p)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">15. Computing Shared Secrets</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">15. Computing Shared Secrets</p>
+                    <p  >
                         Calculate the value of g <sup>a</sup> mod p
                     </p>
                     <img class="medium-img" src="https://www.noser.com/wp-content/uploads/2016/12/key_exchange.png"></img>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 pow(A,b,p)
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">15. Deriving Symmetric Keys</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">15. Deriving Symmetric Keys</p>
+                    <p  >
                         Alice sends you the following IV and ciphertext:
                         <br>
                         {'iv': '737561146ff8194f45290f5766ed6aba', 'encrypted_flag': '39c99bf2f0c14678d6a5416faef954b5893c316fc3c48622ba1fd6a9fe85f3dc72a29c394cf4bc8aff6a7b21cae8e12c'}
                         <br>
                         Decrypt this to obtain your flag!
                     </p>
-                    <p class=" coming-soon-regular" >
+                    <p  >
                         source.py:<br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 import hashlib
@@ -484,10 +487,10 @@ def encrypt_flag(shared_secret: int):
 
 print(encrypt_flag(shared_secret))
                     </code>
-                    <p class=" coming-soon-regular" >
+                    <p  >
                         decrypt.py:<br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 import hashlib
@@ -521,29 +524,29 @@ ciphertext = ?
 
 print(decrypt_flag(shared_secret, iv, ciphertext))
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">17. Parameter Injection</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">17. Parameter Injection</p>
+                    <p  >
                         You're in a position to not only intercept Alice and Bob's DH key exchange, but also rewrite their messages. Think about how you can play with the DH equation that they calculate, and therefore sidestep the need to crack any discrete logarithm problem.<br>
                     Use the script from "Deriving Symmetric Keys" to decrypt the flag once you've recovered the shared secret.<br>
-                    Connect at socket.cryptohack.org 13371
+                    Connect at socket.cryptohack.org 13371<br><br>
                     </p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p class="post-it dotted">
                         <br>
-                        Remainder:<br>
+=
                         A = g <sup>a</sup> &nbsp; S = B <sup>a</sup><br>
                         B = g <sup>b</sup> &nbsp; S = A <sup>b</sup><br>
                         S = g <sup>a<sup>b</sup></sup> = g<sup>b<sup>a</sup></sup>
                         <br>
                         <br>
                     </p>
-                    <p class=" coming-soon-regular">
+                    <p >
                         <br>
                         In conexiunea primita pot fi modificati toti parametrii.<br><br>
                         Cel mai usor mod de a obtine o cheie e prin a seta g-ul ca 1.<br>
@@ -552,7 +555,7 @@ print(decrypt_flag(shared_secret, iv, ciphertext))
                         O alta valoare gasita este setatul lui p ca fiind 0x1. Asta face ca B-ul sa fie 0 si cheia 0
                         <br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from pwn import *
 import json
 import re
@@ -588,7 +591,7 @@ print(alice_i_json)
 
 print(decrypt_flag(1,alice_i_json["iv"], alice_i_json["encrypted_flag"]))
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
@@ -596,19 +599,19 @@ print(decrypt_flag(1,alice_i_json["iv"], alice_i_json["encrypted_flag"]))
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">18. Export-grade</p>
-                    <p class=" coming-soon-regular" >
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">18. Export-grade</p>
+                    <p  >
                     Alice and Bob are using legacy codebases and need to negotiate parameters they both support. You've man-in-the-middled this negotiation step, and can passively observe thereafter. How are you going to ruin their day this time?<br>
                     </p>
 
-                    <p class=" coming-soon-regular">
+                    <p >
                         Din lista oferita de Alice, Bob poate fi fortat sa aleaga DH64 asupra caruia se poate aplica brute-force<br>
                     </p>
-                    <p class=" coming-soon-regular">
+                    <p >
                         solve1.py<br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from pwn import *
 import json
 import re
@@ -656,10 +659,10 @@ print(f"A = {A}")
 print(f"g = {g}")
                     </code>
 
-                    <p class=" coming-soon-regular">
+                    <p >
                         sage<br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 sage: p = 16007670376277647657
 ....: A = 13092938177611414175
 ....: g = 2
@@ -678,10 +681,10 @@ sage: p = 16007670376277647657
 4117005310660608803
                     </code>
 
-                    <p class=" coming-soon-regular">
+                    <p >
                         solve2.py<br>
                     </p>
-                    <code class=" coming-soon-regular dotted">
+                    <code class="dotted">
 from decrypt import decrypt_flag
 
 a = 4117005310660608803
@@ -693,7 +696,9 @@ flag = {"iv": "5377349903f02df6606af496b41d6f78", "encrypted_flag": "c1d43816d02
 shared = pow(B, a, p)
 print(decrypt_flag(shared, flag["iv"], flag["encrypted_flag"]))
                     </code>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
-                <!-- CONTENT FINISH -->
 
+
+
+                <!-- CONTENT FINISH -->

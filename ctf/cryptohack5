@@ -1,16 +1,17 @@
 CryptoHack5
 <!-- CONTENT START -->
-<div class="row">
-                    <p class=" coming-soon-regular"><br></p>
+                
+                <div class="row">
+                    <p ><br></p>
                     <h1><div>Elliptic Curves</div></h1>
                 </div>
-                <a class=" coming-soon-regular" href="https://github.com/elikaski/ECC_Attacks">ECC Intro & attacks</a>
+                <a  href="https://github.com/elikaski/ECC_Attacks">ECC Intro & attacks</a>
 
                 <div class="row">
                     <img src="https://cryptohack.org/static/img/ECClines.svg" class="small-img" >
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">1. Background Reading</p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">1. Background Reading</p>
+                    <p class="post-it dotted">
                         <br>
                         Standard equation(Weierstrass):<br>
                         <strong>y<sup>2</sup>=x<sup>3</sup>+ax+b</strong><br>
@@ -25,22 +26,22 @@ Asociativitate <strong>(P + Q) + R = P + (Q + R)</strong><br>
 Comutativitate: <strong>P + Q = Q + P</strong><br>
 <br>                   
                     </p>
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">2. Point negation</p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">2. Point negation</p>
+                    <p class="post-it dotted">
                         Elliptic curves, F<sub>p</sub> field<br>
                         <strong>E(F<sub>p</sub>) = { (x, y) : x, y &in; F<sub>p</sub> satisfying
   y<sup>2</sup> = x<sup>3</sup> + a x + b } &cup; O</strong><br>
 <br>                   <a href="https://curves.xargs.org/">Visualizing Elliptic Curve Cryptography</a>
                     </p>
 
-                    <p class=" coming-soon-regular"><br>
+                    <p ><br>
                     For all the challenges in the starter set, we will be working with the elliptic curve<br><br>
 E: Y<sup>2</sup> = X<sup>3</sup> + 497X + 1768 mod 9739<br><br>
 Using the above curve, and the point P(8045, 6936), find the point Q(x, y) such that<br>
@@ -48,7 +49,7 @@ P + Q = O
                     </p>
 
 
-                    <p class=" coming-soon-regular"><br>
+                    <p ><br>
 P + Q = O => P = -Q => -Q = (X<sub>P</sub>,-Y<sub>P</sub>) = (8045,-6936)mod 9739 = (8045, 2803)
                     </p>
 
@@ -56,9 +57,9 @@ P + Q = O => P = -Q => -Q = (X<sub>P</sub>,-Y<sub>P</sub>) = (8045,-6936)mod 973
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">3. Point Addition</p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">3. Point Addition</p>
+                    <p class="post-it dotted">
                         <strong>Algorithm for the addition of two points: P + Q<br><br></strong>
 (a) If P = O, then P + Q = Q.<br>
 (b) Otherwise, if Q = O, then P + Q = P.<br>
@@ -73,14 +74,14 @@ P + Q = O => P = -Q => -Q = (X<sub>P</sub>,-Y<sub>P</sub>) = (8045,-6936)mod 973
                     </p>
 
 
-                    <p class=" coming-soon-regular">
+                    <p >
 Using the above curve, and the points<br>
 P = (493, 5564), Q = (1539, 4742), R = (4403, 5202)<br>
 find the point S(x, y) = P + P + Q + R by implementing the above algorithm.<br>
 <br>
                     </p>
 
-                    <code class=" coming-soon-regular">
+                    <code class="dotted">
 O = (0, 0)
 def add_points(P, Q, a, mod):
     if P == O:
@@ -131,16 +132,16 @@ P_P_Q_R = add_points(P_P_Q, R, a, mod)
 print(f"Crypto{{{P_P_Q_R[0]},{P_P_Q_R[1]}}}")
                     </code>
 
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
 
                 <div class="row">
-                    <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">4. Scalar Multiplication</p>
-                    <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                    <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">4. Scalar Multiplication</p>
+                    <p class="post-it dotted">
                         <strong>Double and Add algorithm for the scalar multiplication<<br><br></strong>
 
 Input: P &isin; E(F<sub>p</sub>) and an integer n &gt; 0<br>
@@ -155,7 +156,7 @@ Output: Q = [n]P &isin; E(F<sub>p</sub>)<br><br>
                     </p>
 
 
-                    <p class=" coming-soon-regular">
+                    <p >
                         <br>
 Using the above curve, and the point<br>
 P = (2339, 2213),<br>
@@ -163,7 +164,7 @@ find the point Q(x, y) = [7863]P by implementing the above algorithm.
 <br><br>
                     </p>
 
-                    <code class=" coming-soon-regular">
+                    <code class="dotted">
 def scalar_multiplication(P, n, a, mod):
     Q = P
     R = O
@@ -184,17 +185,17 @@ nP = scalar_multiplication(P, n, a, mod)
 print(f"Crypto{{{nP[0]},{nP[1]}}}")
                     </code>
 
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
                 <div class="row">
-                <p class=" coming-soon-regular"><br></p>
-                    <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">5. Curves and Logs</p>
+                <p ><br></p>
+                    <p class="fw-bold underline" style="font-size:1rem;">5. Curves and Logs</p>
 
 
-                    <p class=" coming-soon-regular">
+                    <p >
                         <br>
 Using the curve, prime and generator:<br><br>
 E: Y<sup>2</sup> = X<sup>3</sup> + 497X + 1768 mod 9739, G: (1804, 5368)<br><br>
@@ -205,8 +206,8 @@ Generate a key by calculating the SHA1 hash of the x coordinate (take the intege
                     </p>
 
 
-                    <p class=" coming-soon-regular">python</p>
-                    <code class=" coming-soon-regular">
+                    <p >python</p>
+                    <code class="dotted">
 import hashlib
 
 a = 497
@@ -225,8 +226,8 @@ shared = hashlib.sha1(str(x).encode()).hexdigest()
 print(shared)
                     </code>
 
-                    <p class=" coming-soon-regular">sage</p>
-                    <code class=" coming-soon-regular">
+                    <p >sage</p>
+                    <code class="dotted">
 sage: E = EllipticCurve(GF(9739),[497,1768])
 sage: QA = E(815, 3190)
 sage: nB = 1829
@@ -234,23 +235,23 @@ sage: QA*nB
 (7929 : 707 : 1) 
                     </code>
 
-                    <p class=" coming-soon-regular"><br></p>
+                    <p ><br></p>
                 </div>
 
 
 
             <div class="row">
-                <p class=" coming-soon-regular"><br></p>
-                <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">6. Efficient Exchange</p>
+                <p ><br></p>
+                <p class="fw-bold underline" style="font-size:1rem;">6. Efficient Exchange</p>
 
 
-                <p class=" coming-soon-regular">
+                <p >
                         <br>
 Calculate the shared secret after Alice sends you
 x(Q_A) = 4726, with your secret integer n_B = 6534.
 <br><br>
                 </p>
-                <code class=" coming-soon-regular">
+                <code class="dotted">
 sage: xQA = 4726
 sage: QA = E.lift_x(xQA).xy()
 sage: EQA = E(QA)
@@ -259,16 +260,16 @@ sage: EQA * nb
 (1791 : 7558 : 1)                                                                                 
                 </code>
 
-                <p class=" coming-soon-regular"><br></p>
+                <p ><br></p>
             </div>
 
 
 
             <div class="row">
-                <p class=" coming-soon-regular"><br></p>
-                <p class=" coming-soon-regular fw-bold underline" style="font-size:1rem;">7. Montgomery's Ladder</p>
+                <p ><br></p>
+                <p class="fw-bold underline" style="font-size:1rem;">7. Montgomery's Ladder</p>
 
-                <p class=" coming-soon-regular">
+                <p >
                         <br>
 We will work with the following elliptic curve:<br><br>
 E: Y<sup>2</sup> = X<sup>3</sup> + 486662X<sup>2</sup> + X mod 2<sup>255</sup> &minus; 19<br><br>
@@ -277,7 +278,7 @@ Using the above curve, and the generator point with G.x = 9, find the x-coordina
                 </p>
 
 
-                <p class=" coming-soon-regular">
+                <p >
                     <strong>Helper functions:</strong><br>
                     <br>
                 </p>
@@ -285,11 +286,11 @@ Using the above curve, and the generator point with G.x = 9, find the x-coordina
 
 
 
-                <p class=" coming-soon-regular">
+                <p >
                     Addition formula for Montgomery Curve (Affine):
                     <br>
                 </p>
-                <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                <p class="post-it dotted">
 Input: P, Q &isin; E(F<sub>p</sub>) with P &ne; Q<br>
 Output: R = (P + Q) &isin; E(F<sub>p</sub>)<br><br>
 
@@ -299,7 +300,7 @@ x<sub>3</sub> = B&alpha;<sup>2</sup> &minus; A &minus; x<sub>1</sub> &minus; x<s
 y<sub>3</sub> = &alpha;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub><br>
 R = (x<sub>3</sub>, y<sub>3</sub>)<br>
                 </p>
-                <code class=" coming-soon-regular">
+                <code class="dotted">
 def montgomery_add(P, Q, mod, A, B):
     y2_y1 = (Q[1] - P[1]) % mod
     x2_x1 = (Q[0] - P[0]) % mod
@@ -310,12 +311,12 @@ def montgomery_add(P, Q, mod, A, B):
                 </code>
 
 
-                <p class=" coming-soon-regular">
+                <p >
                     <br>
                         Doubling formula for Montgomery Curve (Affine)
                         <br>
                 </p>
-                <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                <p  class="post-it dotted">
     Input: P &isin; E(F<sub>p</sub>)<br>
     Output: R = [2]P &isin; E(F<sub>p</sub>)<br><br>
 
@@ -325,7 +326,7 @@ def montgomery_add(P, Q, mod, A, B):
     y<sub>3</sub> = &alpha;(x<sub>1</sub> &minus; x<sub>3</sub>) &minus; y<sub>1</sub><br>
     R = (x<sub>3</sub>, y<sub>3</sub>)<br>
                 </p>
-                <code class=" coming-soon-regular">
+                <code class="dotted">
 def montgomery_double(P, mod, A, B):
     num = (3 * pow(P[0],2, mod) + 2 * A * P[0] + 1) % mod
     den = pow(2 * B * P[1], -1, mod)
@@ -336,12 +337,12 @@ def montgomery_double(P, mod, A, B):
                 </code>
 
 
-                <p class=" coming-soon-regular">
+                <p >
                     <br>
                         Montgomery’s binary algorithm in the group E(F<sub>p</sub>)
                         <br>
                 </p>
-                <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                <p class="post-it dotted">
     Input: P &isin; E(F<sub>p</sub>) and an n-bit integer k = &sum; 2<sup>i</sup>k<sub>i</sub> where k<sub>n&minus;1</sub> = 1<br>
     Output: [k]P &isin; E(F<sub>p</sub>)<br><br>
 
@@ -354,7 +355,7 @@ def montgomery_double(P, mod, A, B):
     7. Return R<sub>0</sub><br>
 
                 </p>
-                <code class=" coming-soon-regular">
+                <code class="dotted">
 def montgomery_binary(P, k, mod, A, B):
     R0, R1 = P, montgomery_double(P, mod, A, B)
     n = k.bit_length()
@@ -366,11 +367,11 @@ def montgomery_binary(P, k, mod, A, B):
     return R0                                                  
                 </code>
 
-                <p class=" coming-soon-regular">
+                <p >
                     <br><strong>Solve:</strong><br>
                     sage
                 </p>
-                <code class=" coming-soon-regular">
+                <code class="dotted">
 p  = 2^255 - 19
 A  = 486662
 xG = 9
@@ -389,10 +390,10 @@ Q  = k * G
 xQ = Q.xy()[0]
 xQ                                                                              
                 </code>
-                <p class=" coming-soon-regular">
+                <p >
                     python
                 </p>
-                <code class=" coming-soon-regular">
+                <code class="dotted">
 from tonellishanks import tonellishanks
 
 mod = pow(2,255) - 19
@@ -409,28 +410,28 @@ Q = montgomery_binary(G, 0x1337c0decafe, mod, A, B)
 print(Q)                                                                     
                 </code>
 
-                <p class=" coming-soon-regular"><br></p>
+                <p ><br></p>
             </div>
 
 
 
             <div class="row">
-                <p class=" coming-soon-regular fw-bold underline">
+                <p class="fw-bold underline">
                     <br>
                     8. Smooth Criminal
                 </p>
-                <p class=" coming-soon-regular">
+                <p >
                     Spent my morning reading up on ECC and now I'm ready to start encrypting my messages. Sent a flag to Bob today, but you'll never read it.<br>
                     <a href="https://cryptohack.org/static/challenges/source_ba064d03b53a5fd7321dd0007b72906b.py">source.py</a><br>
                     <a href="https://cryptohack.org/static/challenges/output_6cf0cf5ca7ab93bb829e557dd77e08ff.txt">output.txt</a>
                 </p>
 
-                <p class=" coming-soon-regular">
+                <p >
                     <br>
                     <a href="https://github.com/elikaski/ECC_Attacks?tab=readme-ov-file#The-order-of-the-generator-is-too-small">Order of generator is too small</a><br>
                 </p>
                 
-                <code class=" coming-soon-regular">
+                <code >
                     
 p  = 310717010502520989590157367261876774703
 a  = 2
@@ -461,16 +462,16 @@ k
 
 
             <div class="row">
-                <p class=" coming-soon-regular fw-bold underline"><br>9. Curveball</p>
-                <p class=" coming-soon-regular">
+                <p class="fw-bold underline"><br>9. Curveball</p>
+                <p >
                     Here's my secure search engine, which will only search for hosts it has in its trusted certificate cache.<br>
                     <a href="https://cryptohack.org/static/challenges/13382_edfe1f04767ab6d72d689fc13a002dcc.py">13382.py</a><br><br>
                 </p>
-                <p class=" coming-soon-regular">
+                <p >
                     Codul primit verifica daca certificatul primit(cheie privata, host, curba, generator) exista si este valid. Daca acesta nu exista este adaugat in lista, iar daca exista este verificat. <br><br>
 
                     Verificarea se face face in functia
-                    <code class=" coming-soon-regular">
+                    <code class="dotted">
 def sign_point(self, g, d):
     return g * d</code><br>
                     Rezultatul este comparat cu o cheie publica existenta.<br>
@@ -481,17 +482,17 @@ def sign_point(self, g, d):
                     <strong>k<sup>-1</sup> * pb * k = pb</strong>
                     <br><br>
                 </p>
-                <a  class=" coming-soon-regular" href="https://neuromancer.sk/std/nist/P-256">valoarea standard pentru n</a>
-                <p class=" coming-soon-regular">
+                <a   href="https://neuromancer.sk/std/nist/P-256">valoarea standard pentru n</a>
+                <p >
                     <br>
                     k = 2<br>
                     
                 </p>
-                <code class="coming-soon-regular ">inverse_mod(2,n)
+                <code>inverse_mod(2,n)
 P = EC(x,y)
 2*P</code>
-                <p class=" coming-soon-regular"><br>Rezolvare:</p>
-                <code class=" coming-soon-regular">
+                <p ><br>Rezolvare:</p>
+                <code class="dotted">
 from pwn import *
 import json
 
@@ -512,18 +513,18 @@ s.sendline(choice_bytes)
 res = s.recvline()
 print(res)
                 </code>
-                <p class=" coming-soon-regular"><br><br></p>
+                <p ><br><br></p>
             </div>
 
 
             <div class="row">
-                <p class=" coming-soon-regular fw-bold underline"><br>10. ProSign3</p>
-                <p class=" coming-soon-regular">
+                <p class="fw-bold underline"><br>10. ProSign3</p>
+                <p >
                     This is my secure timestamp signing server. Only if you can produce a signature for "unlock" can you learn more.<br>
 
                     <a href="https://cryptohack.org/static/challenges/13381_7fd5a5da326879dc4a3995cad969a165.py">13381.py</a>
                 </p>
-                <p class=" coming-soon-regular" style="background-color: rgba(151, 240, 42, 0.13);">
+                <p  class="post-it dotted">
                     <strong>Signing</strong><br>
 EC equation, <span style="color:blue;">G</span> fixed<br>
 <span style="color:darkgreen;">d<sub>B</sub></span><span style="color:blue;">G</span> -> Bob's private key <br>
@@ -558,11 +559,11 @@ u<sub>1</sub><span style="color:blue;">G</span> + u<sub>2</sub>P<sub style="colo
 = <span style="color:red;">k</span><span style="color:blue;">G</span><br>
                 </p>
 
-                <p class=" coming-soon-regular">
+                <p >
                     <br>
                     Problema care apare in codul dat apare in functia:
                 </p>
-                <code class=" coming-soon-regular">
+                <code  class="dotted">
 def sign_time(self):
         now = datetime.now()
         m, n = int(now.strftime("%m")), int(now.strftime("%S"))
@@ -572,7 +573,7 @@ def sign_time(self):
         sig = self.privkey.sign(bytes_to_long(hsh), randrange(1, n))
         return {"msg": msg, "r": hex(sig.r), "s": hex(sig.s)}
                 </code>
-                <p class=" coming-soon-regular">
+                <p >
                     In <span class="highlight-yellow">self.privkey.sign(bytes_to_long(hsh), randrange(1, n))</span> k-ul este ales aleatoriu in intervalul 1, n. Cum acesta depinde de timp, daca request-ul este trimis la momentul potrivit poate fi fortat sa ia valoarea 1.<br><br>
 
                     Daca valoarea k-ului este 1:<br>
@@ -587,7 +588,7 @@ def sign_time(self):
                 </p>
 
 
-                <code class=" coming-soon-regular">
+                <code class="dotted">
 from pwn import *
 import json
 import time
@@ -664,7 +665,7 @@ response = sock.recvline()
 print(response)
                 </code>
 
-                <p class=" coming-soon-regular">
+                <p >
                     Pentru functia wait_until(n), valoarea la care se primeste request-ul este n-1<br>
                     Deci pentru wait_until(3), k apartine [1,2]<br>
                     Pentru n = 2 apare o eroare.<br>
@@ -676,15 +677,15 @@ print(response)
             
 
             <div class="row">
-                <p class=" coming-soon-regular fw-bold underline">11. Moving Problems</p>
-                <p class=" coming-soon-regular">
+                <p class="fw-bold underline">11. Moving Problems</p>
+                <p >
                     I've learnt that when life gives you lemons, if you look at things the right way they taste just like pairs.<br><br>
                     <a href="https://cryptohack.org/static/challenges/source_d3b18de2c91f41f6e7431fb9854cf74f.sage">source.sage</a><br>
                     <a href="https://cryptohack.org/static/challenges/output_6dc28a4d1223789dc760b8ce9235a667.txt">output.txt</a><br><br>
                 </p>
 
-                <a class=" coming-soon-regular" href="https://github.com/elikaski/ECC_Attacks?tab=readme-ov-file#the-curve-is-supersingular">MOV attack</a>
-                <code class=" coming-soon-regular">
+                <a  href="https://github.com/elikaski/ECC_Attacks?tab=readme-ov-file#the-curve-is-supersingular">MOV attack</a>
+                <code class="dotted">
 Gn = G.order()
 k = 1
 while p^k % Gn != 1:
@@ -714,4 +715,5 @@ shared = key * P2
 shared
                 </code>
             </div>
-<!-- CONTENT FINISH -->
+
+                <!-- CONTENT FINISH -->
