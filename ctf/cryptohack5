@@ -1,16 +1,15 @@
 CryptoHack5
 <!-- CONTENT START -->
-                
                 <div class="row">
                     <p ><br></p>
                     <h1><div>Elliptic Curves</div></h1>
                 </div>
+                <img class="medium-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/ctf/resources/lizard_compressed.svg">
                 <a  href="https://github.com/elikaski/ECC_Attacks">ECC Intro & attacks</a>
-
                 <div class="row">
-                    <img src="https://cryptohack.org/static/img/ECClines.svg" class="small-img" >
                     <p ><br></p>
                     <p class="fw-bold underline" style="font-size:1rem;">1. Background Reading</p>
+                    <img src="https://cryptohack.org/static/img/ECClines.svg" class="small-img" >
                     <p class="post-it dotted">
                         <br>
                         Standard equation(Weierstrass):<br>
