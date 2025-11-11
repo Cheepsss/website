@@ -4,7 +4,6 @@ CryptoHack5
                     <p ><br></p>
                     <h1><div>Elliptic Curves</div></h1>
                 </div>
-                <img class="medium-img" src="https://raw.githubusercontent.com/Cheepsss/website/refs/heads/main/ctf/resources/lizard_compressed.svg">
                 <a  href="https://github.com/elikaski/ECC_Attacks">ECC Intro & attacks</a>
                 <div class="row">
                     <p ><br></p>
