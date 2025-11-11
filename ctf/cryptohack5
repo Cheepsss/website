@@ -1,9 +1,5 @@
-CryptoHack5
+CryptoHack5 - Elliptic curves
 <!-- CONTENT START -->
-                <div class="row">
-                    <p ><br></p>
-                    <h1><div>Elliptic Curves</div></h1>
-                </div>
                 <a  href="https://github.com/elikaski/ECC_Attacks">ECC Intro & attacks</a>
                 <div class="row">
                     <p ><br></p>
